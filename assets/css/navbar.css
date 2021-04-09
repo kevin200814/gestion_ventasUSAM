@@ -1,0 +1,32 @@
+.navbar-2  h1 a span {
+    font-size: .3em;
+    display: block;
+    text-transform: uppercase;
+    color: #FA1818;
+  }
+
+  .navbar-2 h1 a{
+    font-size: 1.5em;
+    color: #212121;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 100%;
+    line-height: 1;
+    height: 55px;
+  }
+
+  .navbar-2{
+    background: white;
+  }
+
+  .navbar-nav{
+    align-content: space-between;
+  }
+
+  .bg{
+    background: #0A0C57;
+  }
+
+.row-queen{
+  transform: translate(116%);
+}

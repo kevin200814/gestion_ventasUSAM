@@ -1,0 +1,13 @@
+  .caja{
+    width: 890px ;
+    height: 200px;
+  }
+
+  .ima{
+    width: 490px ;
+    height: 399px;
+  } 
+  .caja{
+    transform: translate(-3%,1%);
+  }
+

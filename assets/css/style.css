@@ -1,0 +1,21 @@
+.nav1{
+			background: black;
+			color: white;
+
+		}
+
+		a{
+			text-decoration: none;
+			color:#fff;
+
+		}
+		
+		.navbar-2{
+			background: white;
+			padding:2%;
+			color:black;
+		}
+
+		.navbar-2 ul li a{
+			color:black;
+		}
