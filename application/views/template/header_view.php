@@ -1,8 +1,10 @@
 <script type="text/javascript">
     $('.carousel').carousel()
   </script>
+
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand brand1" href="#">BIENVENIDO</a>
+  <a class="navbar-brand brand1" href="#" style="text-transform: uppercase;">BIENVENIDO <?= $this->session->userdata('NICK') ?></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -22,14 +24,62 @@
     ver carrito
   </button>
 
+  <?php
+if (isset($info)) {
+  # code...
+  foreach ($info->result() as $row)
+      {
+        if ($row->ID_ROL == 1) //MENU 1 PARA ADMIN
+        {
+          ?>
+          <ul class="navbar-nav  col-md-1 my-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Admin
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="<?= base_url('Login/cerrar_sesion')?>">Cerrar Sesion</a>
+            </div>
+          </li>
+        </ul>
+        <a class="navbar-brand brand1" href="#">Contactanos</a>
+      </div>
+      </nav>
 
-  <ul class="navbar-nav  col-md-1 my-lg-0">
+        <?php
+     
+        }
+        elseif ($row->ID_ROL == 2) //MENU 1 PARA CLIENTES
+        {
+           ?>
+          <ul class="navbar-nav  col-md-1 my-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Cliente
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="<?= base_url('Login/cerrar_sesion')?>">Cerrar Sesion</a>
+            </div>
+          </li>
+        </ul>
+        <a class="navbar-brand brand1" href="#">Contactanos</a>
+      </div>
+      </nav>
+
+        <?php
+        }
+    }
+}
+else
+{
+  ?>
+    <ul class="navbar-nav  col-md-1 my-lg-0">
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Login
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="#">Iniciar sesion</a>
+        <a class="dropdown-item" href="<?= base_url('Login/login_view')?>">Iniciar sesion</a>
         <a class="dropdown-item" href="#">Registrarse</a>
       </div>
     </li>
@@ -37,6 +87,12 @@
   <a class="navbar-brand brand1" href="#">Contactanos</a>
 </div>
 </nav>
+
+  <?php
+}
+
+?>
+
 
 <!-- --------------------- Segunda Navbar----------------------->
 <nav class="navbar navbar-expand-lg StoreT navbar-2">
@@ -46,6 +102,62 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
+
+<?php
+if (isset($info)) {
+  # code...
+  foreach ($info->result() as $row)
+      {
+        if ($row->ID_ROL == 1) //SUB MENU 2 PARA ADMIN
+        {
+          ?>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+              <ul class="navbar-nav  ">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Inicio (ADMIN)  / <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"> ¿Quiénes Somos? (ADMIN)  / </a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="#"> Ofertas (ADMIN) / <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contacto (ADMIN)</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        <?php
+        }
+        elseif ($row->ID_ROL == 2) //SUB MENU PARA CLIENTE
+        {
+          ?>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+              <ul class="navbar-nav  ">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Inicio  / <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#"> ¿Quiénes Somos?  / </a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="#"> Ofertas / <span class="sr-only"></span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contacto</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        <?php
+        }
+
+      }
+}
+else
+{
+  ?>
   <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
     <ul class="navbar-nav  ">
       <li class="nav-item active">
@@ -60,12 +172,15 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Contacto</a>
       </li>
-
-
     </ul>
-
   </div>
 </nav>
+  <?php
+}
+
+?>
+
+  
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 <div class="container-fluid">
