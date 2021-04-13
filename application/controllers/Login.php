@@ -37,7 +37,7 @@ class Login extends CI_Controller {
 			$usuario = $this->input->post('username');
 			$password = $this->input->post('password-field');
 			
-			$comprobar = $this->Login_model->logeo($usuario, $password);
+			$comprobar = $this->Login_model->logeo($usuario, md5($password));
 			if ($comprobar == true)
 			{
 				$session_data = array(
