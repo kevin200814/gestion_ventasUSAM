@@ -66,6 +66,14 @@ if (isset($info)) {
       </div>
       </nav>
 
+      <!-- --------------------- Segunda Navbar----------------------->
+<nav class="navbar navbar-expand-lg StoreT navbar-2">
+  <h1> <a class="navbar-brand " ><span>Store </span>Online</a></h1>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
         <?php
         }
     }
@@ -88,12 +96,6 @@ else
 </div>
 </nav>
 
-  <?php
-}
-
-?>
-
-
 <!-- --------------------- Segunda Navbar----------------------->
 <nav class="navbar navbar-expand-lg StoreT navbar-2">
   <h1> <a class="navbar-brand " ><span>Store </span>Online</a></h1>
@@ -101,6 +103,13 @@ else
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
+  <?php
+}
+
+?>
+
+
 
 
 <?php
@@ -111,23 +120,7 @@ if (isset($info)) {
         if ($row->ID_ROL == 1) //SUB MENU 2 PARA ADMIN
         {
           ?>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-              <ul class="navbar-nav  ">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Inicio (ADMIN)  / <span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#"> ¿Quiénes Somos? (ADMIN)  / </a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="#"> Ofertas (ADMIN) / <span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Contacto (ADMIN)</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
+            <!-- VACIO DE MOMENTO --> 
         <?php
         }
         elseif ($row->ID_ROL == 2) //SUB MENU PARA CLIENTE
@@ -150,37 +143,6 @@ if (isset($info)) {
               </ul>
             </div>
           </nav>
-        <?php
-        }
-
-      }
-}
-else
-{
-  ?>
-  <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-    <ul class="navbar-nav  ">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Inicio  / <span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"> ¿Quiénes Somos?  / </a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#"> Ofertas / <span class="sr-only"></span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contacto</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-  <?php
-}
-
-?>
-
-  
 <hr style="height:2px;border-width:0;color:gray;background-color:gray">
 
 <div class="container-fluid">
@@ -196,6 +158,7 @@ else
         <a href="#" class="list-group-item list-group-item-action">Baterías</a>
       </div>
     </div>
+  
 
     <div class="col-md-6">
       <div class="caja">
@@ -232,6 +195,92 @@ else
   <br>
   <br>
   <div class="clearfix"> </div>
+
+        <?php
+        }
+
+      }
+}
+else
+{
+  ?>
+  <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+    <ul class="navbar-nav  ">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Inicio  / <span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"> ¿Quiénes Somos?  / </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="#"> Ofertas / <span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contacto</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action">Celulares</a>
+        <a href="#" class="list-group-item list-group-item-action">Audio</a>
+        <a href="#" class="list-group-item list-group-item-action">Computación</a>
+        <a href="#" class="list-group-item list-group-item-action">Almacenamiento</a>
+        <a href="#" class="list-group-item list-group-item-action">Video</a>
+        <a href="#" class="list-group-item list-group-item-action">Cámaras</a>
+        <a href="#" class="list-group-item list-group-item-action">Baterías</a>
+      </div>
+    </div>
+  
+
+    <div class="col-md-6">
+      <div class="caja">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100 ima" src="<?php echo base_url(); ?>assets/images/1.jpg" alt="First slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100 ima" src="<?php echo base_url(); ?>assets/images/2.jpg" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100 ima" src="<?php echo base_url(); ?>assets/images/3.jpg" alt="Third slide">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="clearfix"> </div>
+  <?php
+}
+
+?>
+
+
+
+
 
 </div>
  
