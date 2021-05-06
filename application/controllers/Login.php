@@ -97,7 +97,7 @@ class Login extends CI_Controller {
 		$usuario["EMAIL"] = $this->input->post('correo');
 		$usuario["NICK"] = $this->input->post('nick');
 		$usuario["CONTRASENA"] = md5($this->input->post('pass'));
-		$usuario["TIPO_USUARIO"] = $this->input->post('tusuario');
+		$usuario["TIPO_USUARIO"] = 'Minorista';
 		$usuario["ID_ROL"] = 2;
 		//$usuario["confipass"] = $this->input->post('confipass');
 

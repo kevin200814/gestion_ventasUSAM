@@ -93,12 +93,12 @@
 				      	</div>
 				    </div>
 				    <div class="row">
-				    	<div class="col-md-4">
+				    	<div class="col-md-6">
                             <div class="form-group">
 				      			<input id="nick" name="nick" type="text" class="form-control" placeholder="Ingrese su nombre de usuario">
 				            </div>
                         </div>
-				    	<div class="col-md-4">
+				    	<!--<div class="col-md-4">
                             <div class="form-group">
 				      			<select class="form-control" id="tusuario" name="tusuario">
 				      				<option disabled>Selecciona tu tipo de usuario</option>
@@ -107,16 +107,19 @@
 				      				<option value="Mayorista" style="color:black;">Mayorista</option>
 				      			</select>
 				            </div>
-                        </div>
-                        <div class="col-md-4">
+                        </div>-->
+                        <div class="col-md-6">
                             <div class="form-group" style="top:10px;">
-				      			<label>Masculino
-							  		<input type="radio" name="sexo" value="1">
-								</label>
-								&nbsp;&nbsp;&nbsp;
-								<label>Femenino
-							  		<input type="radio" name="sexo" value="2">
-								</label>
+                            	<center>
+                            		<label>Masculino
+							  			<input type="radio" name="sexo" value="1">
+									</label>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<label>Femenino
+								  		<input type="radio" name="sexo" value="2">
+									</label>
+                            	</center>
 				            </div>
                         </div>
 				    </div>
