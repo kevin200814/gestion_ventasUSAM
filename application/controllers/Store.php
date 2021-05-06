@@ -22,7 +22,8 @@ class Store extends CI_Controller {
 				{
 					$data = array(
 					'page_title' => 'Store Online',
-					'view' => 'home',
+					'view' => 'template/main_admin',
+					'view_table' => 'other',
 					'data_view' => array('info' => $this->Login_model->verificarRol($usuario))
 					);
 

@@ -35,7 +35,7 @@
 	<?php require 'modal.php' ?>
 </head>
 <body>
-	<?php $this->load->view('template/header'); ?>
+	<?php //$this->load->view('template/header'); ?>
 	<br/><br/>
 
 	<div class="container">
@@ -85,12 +85,12 @@
 		</div>
 		<div class="row">
 			<div class="col">
-				<?php $this->load->view($view,$data_view); ?>
+				<?php $this->load->view($view_table,$data_view); ?>
 			</div>
 		</div>
 
 	</div>
 	<br/><br/>
-	<?php $this->load->view('template/footer_view'); ?>
+	<?php //$this->load->view('template/footer_view'); ?>
 </body>
 </html>
