@@ -28,17 +28,33 @@ class Login extends CI_Controller {
 
 	public function validateUser()
 	{
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('username', 'Usuario', 'required');
-		$this->form_validation->set_rules('password-field', 'Contraseña', 'required');
-		if ($this->form_validation->run())
+		$config = array(
+			array(
+		            'field' => 'username',
+		            'label' => 'Usuario',
+		            'rules' => 'required',
+		            'errors' => array(
+		            			'required' => 'Ingrese %s'
+		            			)
+		    ),
+		    array(
+		            'field' => 'password-field',
+		            'label' => 'Contraseña',
+		            'rules' => 'required',
+		            'errors' => array(
+		            			'required' => 'Ingrese %s'
+		            			)
+		    )
+		);
+		$this->form_validation->set_rules($config);
+		if ($this->form_validation->run() == TRUE)
 		{
 			# True...
 			$usuario = $this->input->post('username');
 			$password = $this->input->post('password-field');
 			
 			$comprobar = $this->Login_model->logeo($usuario, md5($password));
-			if ($comprobar == true)
+			if ($comprobar == TRUE)
 			{
 				$session_data = array(
 					'NICK' => $usuario
@@ -59,12 +75,46 @@ class Login extends CI_Controller {
 		else
 		{
 			# False...
-			$data['msj_error'] = "Es necesario que ingrese sus datos";
 			$data["page_title"] = "Login";
 			$this->load->view("TemplateLogin/headerLogin", $data);
 			$this->load->view("Login", $data);
 		}
 	}
+
+	public function registro_view()
+	{
+		$data["page_title"] = "Registrarse";
+		$this->load->view("TemplateLogin/headerLogin", $data);
+		$this->load->view("registrarse");
+	}
+
+	public function inserUser()
+	{
+		$usuario["NOMBRES"] = $this->input->post('nombres');
+		$usuario["APELLIDOS"] = $this->input->post('apellidos');
+		$usuario["EDAD"] = $this->input->post('edad');
+		$usuario["ID_SEXO"] = $this->input->post('sexo');
+		$usuario["EMAIL"] = $this->input->post('correo');
+		$usuario["NICK"] = $this->input->post('nick');
+		$usuario["CONTRASENA"] = md5($this->input->post('pass'));
+		$usuario["TIPO_USUARIO"] = $this->input->post('tusuario');
+		$usuario["ID_ROL"] = 2;
+		//$usuario["confipass"] = $this->input->post('confipass');
+
+		$comprobar = $this->Login_model->CrearUsuario($usuario);
+
+		if ($comprobar = TRUE)
+		{
+			redirect(base_url(). 'Login/Login_view');
+		}
+		else
+		{
+			redirect(base_url(). 'Login/registro_view');
+		}
+
+
+	}
+
 
 	public function cerrar_sesion()
 	{

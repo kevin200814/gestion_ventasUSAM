@@ -80,7 +80,7 @@ else
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
         <a class="dropdown-item" href="<?= base_url('Login/login_view')?>">Iniciar sesion</a>
-        <a class="dropdown-item" href="#">Registrarse</a>
+        <a class="dropdown-item" href="<?= base_url('Login/registro_view')?>">Registrarse</a>
       </div>
     </li>
   </ul>

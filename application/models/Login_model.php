@@ -29,4 +29,10 @@ class Login_model extends CI_Model {
 
 	}
 
+	function CrearUsuario($usuario)
+	{
+		$this->db->insert("TBL_USUARIO", $usuario);
+
+	}
+
 }
