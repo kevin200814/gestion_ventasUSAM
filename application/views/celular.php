@@ -4,19 +4,10 @@
 	<title></title>
 </head>
 <body>
-	<!DOCTYPE html>
-	<html>
-	<head>
-		<title></title>
-	</head>
-	<body>
-		<h2>Video</h2>
-		<br>
-		<br>
 	<div class="container">
 		<div class="container">
 			<div class="row">
-				<?php foreach ($video as $valor): ?>
+				<?php foreach ($phone as $valor): ?>
 					<div class="col-md-3">
 						<form action="<?php echo base_url(); ?>Carrito/agregarCarrito" method="post">
 							<div class="card" style="width: 14rem;">
@@ -54,7 +45,5 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
 </body>
 </html>

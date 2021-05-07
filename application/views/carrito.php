@@ -10,7 +10,7 @@
   <br>
   <br>
   <div class="container table-responsive">
-    <form method="post" action="<?php echo base_url(); ?>producto/actualizarCarrito">
+    <form method="post" action="<?php echo base_url(); ?>carrito/actualizarCarrito">
        <h1 class="subtitu"><span class="titu">CARRITO DE COMPRAS </span><b>STORE ONLINE</b></h1>
        
       <table class="timetable_sub">
@@ -56,7 +56,7 @@
 
       <tr>
         <td colspan="4" >
-          <?php echo anchor('producto/vaciarCarrito', 'Vaciar Carrito','style="color:black"') ?>
+          <?php echo anchor('carrito/vaciarCarrito', 'Vaciar Carrito','style="color:black"') ?>
         </td>
 
         <td><b>Total a cancelar:</b></td>
@@ -73,7 +73,7 @@
   $i = 1;
   foreach ($this->cart->contents() as $item):
    ?>
-   <form method="post" action="<?php echo base_url(); ?>producto/registrarDatos">
+   <form method="post" action="<?php echo base_url(); ?>carrito/registrarDatos">
     <input type="hidden" class="form-control "  min="0" name="ID_PRODUCTO[]" value="<?php echo $item['id']; ?>" >
     <input type="hidden" class="form-control "  min="0" name="PRODUCTO[]" value="<?php echo $item['name']; ?>" >
     <input type="hidden" class="form-control "  min="0" name="PRECIO[]" value="<?php echo $item['price']; ?>" >

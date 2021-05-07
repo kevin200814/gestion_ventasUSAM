@@ -6,7 +6,7 @@ class Carrito extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('catalogoModel');
+		$this->load->model('carritoModel');
 		$this->load->library('cart');
 
 	}
@@ -15,11 +15,11 @@ class Carrito extends CI_Controller {
 	{
 		$data = array(
 			'page_title' => 'Producto',
-			'view' => 'producto',
+			'view' => 'carrito',
 			'data_view' => array()
 		);
 
-		$producto = $this->catalogoModel->getProducto();
+		$producto = $this->carritoModel->getProducto();
 		$data['producto']  = $producto;
 
 		
@@ -38,7 +38,7 @@ class Carrito extends CI_Controller {
 
 
 		$this->cart->insert($data);
-		redirect(base_url().'Producto/datosCarrito');
+		redirect(base_url().'Carrito/datosCarrito');
 		
 		
 	}
@@ -59,7 +59,7 @@ class Carrito extends CI_Controller {
 	public function vaciarCarrito(){
 
 		$this->cart->destroy();
-		redirect(base_url().'Producto/datosCarrito');
+		redirect(base_url().'Carrito/datosCarrito');
 	}
 
 	public function actualizarCarrito(){
@@ -67,7 +67,7 @@ class Carrito extends CI_Controller {
 		$data = $this->input->post();
 		$this->cart->update($data);
 
-		redirect(base_url().'Producto/datosCarrito');
+		redirect(base_url().'Carrito/datosCarrito');
 	}
 
 
@@ -78,7 +78,7 @@ class Carrito extends CI_Controller {
 		);
 
 		$this->cart->update($data); 
-		redirect(base_url().'Producto/datosCarrito');
+		redirect(base_url().'Carrito/datosCarrito');
 	}
 
 
@@ -98,9 +98,10 @@ class Carrito extends CI_Controller {
 				'SUBTOTAL_PRODUCTO' => $_POST['SUBTOTAL'][$i],
 				'TOTAL_PAGO' => $_POST['TOTAL_FINAL']
 			);
-			$this->catalogoModel->insertProducto($data);
+			$this->carritoModel->insertProducto($data);
 
 		}
+		
 		$this->cart->destroy();
 		
 		$this->index();	

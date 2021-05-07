@@ -7,13 +7,15 @@ class Catalogo extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('catalogoModel');
+
 	}
 
 	public function index()
 	{
+		
 		$data = array(
 			'page_title' => 'Inicio',
-			'view' => 'celulares',
+			'view' => 'celular',
 			'data_view' => array()
 		);
 
@@ -21,6 +23,8 @@ class Catalogo extends CI_Controller {
 		$data['phone']  = $phone;
 
 		$this->load->view('template/main_view',$data);
+
+		
 	}
 
 	public function audio()
@@ -93,6 +97,6 @@ class Catalogo extends CI_Controller {
 		$this->load->view('template/main_view',$data);
 	}
 
-	
-	
+
+
 }
