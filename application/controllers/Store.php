@@ -21,9 +21,9 @@ class Store extends CI_Controller {
 				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
 				{
 					$data = array(
-					'page_title' => 'Store Online',
-					'view' => 'template/main_admin',
-					'view_table' => 'other',
+					'page_title' => 'Store Online/ Administrar',
+					'view' => 'other',
+					
 					'data_view' => array('info' => $this->Login_model->verificarRol($usuario))
 					);
 
@@ -54,4 +54,184 @@ class Store extends CI_Controller {
 		
 	}
 
+	public function home()
+	{
+		if($this->session->userdata('NICK') != '')
+		{
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
+
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+					$data = array(
+					'page_title' => 'Store Online',
+					'view' => 'home',
+					
+					'data_view' => array('info' => $this->Login_model->verificarRol($usuario))
+					);
+
+					$this->load->view('template/main_view',$data);
+				}
+				elseif ($row->ID_ROL == 2) // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					$data = array(
+					'page_title' => 'Store Online',
+					'view' => 'home',
+					'data_view' => array('info' => $this->Login_model->verificarRol($usuario))
+					);
+
+					$this->load->view('template/main_view',$data);
+				}
+			}
+		}
+		else
+		{
+			$data = array(
+			'page_title' => 'Store Online',
+			'view' => 'home',
+			'data_view' => array()
+			);
+
+			$this->load->view('template/main_view',$data);
+		}
+		
+	}
+
+
+	public function about()
+	{
+		if($this->session->userdata('NICK') != '')
+		{
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
+
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+					$data = array(
+					'page_title' => 'Store Online / ¿Quienes somos? ',
+					'view' => 'about',
+					
+					'data_view' => array('info' => $this->Login_model->verificarRol($usuario))
+					);
+
+					$this->load->view('template/main_view',$data);
+				}
+				elseif ($row->ID_ROL == 2) // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					$data = array(
+					'page_title' => 'Store Online / ¿Quienes somos? ',
+					'view' => 'about',
+					'data_view' => array('info' => $this->Login_model->verificarRol($usuario))
+					);
+
+					$this->load->view('template/main_view',$data);
+				}
+			}
+		}
+		else
+		{
+			$data = array(
+			'page_title' => 'Store Online / ¿Quienes somos? ',
+			'view' => 'about',
+			'data_view' => array()
+			);
+
+			$this->load->view('template/main_view',$data);
+		}
+		
+	}
+
+	public function ofertas()
+	{
+		if($this->session->userdata('NICK') != '')
+		{
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
+
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+					$data = array(
+					'page_title' => 'Store Online / ofertas ',
+					'view' => 'oferta',
+					
+					'data_view' => array('info' => $this->Login_model->verificarRol($usuario))
+					);
+
+					$this->load->view('template/main_view',$data);
+				}
+				elseif ($row->ID_ROL == 2) // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					$data = array(
+					'page_title' => 'Store Online / ofertas',
+					'view' => 'oferta',
+					'data_view' => array('info' => $this->Login_model->verificarRol($usuario))
+					);
+
+					$this->load->view('template/main_view',$data);
+				}
+			}
+		}
+		else
+		{
+			$data = array(
+			'page_title' => 'Store Online / ofertas',
+			'view' => 'oferta',
+			'data_view' => array()
+			);
+
+			$this->load->view('template/main_view',$data);
+		}
+		
+	}
+
+	public function contacto()
+	{
+		if($this->session->userdata('NICK') != '')
+		{
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
+
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+					$data = array(
+					'page_title' => 'Store Online / contacto ',
+					'view' => 'contacto',
+					
+					'data_view' => array('info' => $this->Login_model->verificarRol($usuario))
+					);
+
+					$this->load->view('template/main_view',$data);
+				}
+				elseif ($row->ID_ROL == 2) // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					$data = array(
+					'page_title' => 'Store Online / contacto',
+					'view' => 'contacto',
+					'data_view' => array('info' => $this->Login_model->verificarRol($usuario))
+					);
+
+					$this->load->view('template/main_view',$data);
+				}
+			}
+		}
+		else
+		{
+			$data = array(
+			'page_title' => 'Store Online / contacto',
+			'view' => 'contacto',
+			'data_view' => array()
+			);
+
+			$this->load->view('template/main_view',$data);
+		}
+		
+	}
 }
