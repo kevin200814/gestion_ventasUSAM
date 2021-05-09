@@ -48,9 +48,9 @@
 	            	<button type="submit" class="form-control btn btn-primary submit px-3">Ingresar</button>
 	            </div>
 	            <div>
-	            	<div align="center">
-						<a href="#" style="color: #fff">¿Olvido su contraseña?</a>
-					</div>	            		
+				    <div align="center">
+						<a href="<?= base_url('RecoveryController/recoveryPassword_Alt');?>" style="color: #fff">¿Olvido su contraseña?</a>
+					</div>		            		
 	            </div>
 	          </form>
 	          <br>

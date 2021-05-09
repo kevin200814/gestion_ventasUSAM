@@ -16,7 +16,7 @@ class RecoveryController extends CI_Controller {
 			'view'        => 'Recovery/recovery_password_alt',
 			'data_view'   => array()
 		);
-		$this->load->view('template/main',$data);
+		$this->load->view('template/main_view',$data);
 	}
 
 	public function recoveryQuery()
@@ -28,7 +28,7 @@ class RecoveryController extends CI_Controller {
 		$correo        = $this->input->post('txtEmail');
 		$usuario       = $this->input->post('txtUsuario');
 		$data['datos'] = $this->Recovery_Model->ConsultarRecuperacion($correo,$usuario);
-		$this->load->view('template/main',$data);
+		$this->load->view('template/main_view',$data);
 	}
 
 	public function recoveryVefication()
@@ -47,7 +47,7 @@ class RecoveryController extends CI_Controller {
 			$data['view']       = 'Recovery/Change_Password';
 
 			$data['usuario'] = $sql;
-			$this->load->view('template/main',$data);
+			$this->load->view('template/main_view',$data);
 		}
 	}
 
