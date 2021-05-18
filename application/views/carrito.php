@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+| <!DOCTYPE html>
 <html>
 <head>
   <title></title>
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/carrito.css">
+
 
 </head>
 <body>
@@ -11,6 +11,7 @@
   <br>
   <div class="container table-responsive">
     <form method="post" action="<?php echo base_url(); ?>carrito/actualizarCarrito">
+<<<<<<< Updated upstream
        <h1 class="subtitu"><span class="titu">CARRITO DE COMPRAS </span><b>STORE ONLINE</b></h1>
        <br>
       <table class="timetable_sub">
@@ -23,12 +24,33 @@
           <th>SubTotal:</th>
         </tr>
          <?php 
+=======
+     <h1 class="subtitu"><span class="titu">CARRITO DE COMPRAS </span><b>STORE ONLINE</b></h1>
+     <br>
+     <table class="timetable_sub">
+      <tr>
+        <th>Codigo de Producto</th>
+        <th>Nombre del producto</th>
+        <th>Precio del producto</th>
+        <th>Cantidad</th> 
+        <th></th>
+        <th>SubTotal:</th>
+      </tr>
+      <?php 
+>>>>>>> Stashed changes
       $i = 1;
       foreach ($this->cart->contents() as $item):
        ?>
        <input type="hidden" name="<?php echo $i ?>[rowid]" value="<?php echo $item['rowid']; ?>">
        <tr>
+<<<<<<< Updated upstream
          <td><?php echo $item['id'] ?></td>
+=======
+         
+         <td><?php echo $item['id'] ?></td>
+         
+
+>>>>>>> Stashed changes
          <td>
            <?php 
            echo $item['name'];
@@ -56,15 +78,25 @@
       <td colspan="4" >
         <?php echo anchor('carrito/vaciarCarrito', 'Vaciar Carrito','style="color:black"') ?>
       </td>
+<<<<<<< Updated upstream
 
       <td><b>Total a cancelar:</b></td>
       <td>$ <?php echo number_format($this->cart->total(),2,',','.'); ?></td>
     </tr>
+=======
+>>>>>>> Stashed changes
 
-    </table>
-  </form>
+      <td><b>Total a cancelar:</b></td>
+      <td>$ <?php echo number_format($this->cart->total(),2,',','.'); ?></td>
+    </tr>
+  </table>
+</form>
+
+<<<<<<< Updated upstream
+=======
 
 
+>>>>>>> Stashed changes
 <div>
   <?php 
   $i = 1;
@@ -109,6 +141,8 @@
 </div>
 
 </div>
+
+
 <br>
 <br>
 </body>
