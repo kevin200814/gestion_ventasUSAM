@@ -7,6 +7,7 @@ class Carrito extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('carritoModel');
+		$this->load->model('Login_model');
 		$this->load->library('cart');
 
 	}
@@ -28,32 +29,68 @@ class Carrito extends CI_Controller {
 	}
 
 	public function agregarCarrito(){
-		
-		$data = array(
-			'id' => $_POST['ID_PRODUCTO'],
-			'name' => $_POST['NOMBRE_PRODUCTO'],
-			'qty' => $_POST['CANTIDAD'],
-			'price' => $_POST['PRECIO']
-		);
+
+		if($this->session->userdata('NICK') != '')
+		{
+			$data = array(
+				'id' => $_POST['ID_PRODUCTO'],
+				'name' => $_POST['NOMBRE_PRODUCTO'],
+				'qty' => $_POST['CANTIDAD'],
+				'price' => $_POST['PRECIO']
+			);
 
 
-		$this->cart->insert($data);
-		redirect(base_url().'Carrito/datosCarrito');
-		
+			$this->cart->insert($data);
+			redirect(base_url().'Carrito/datosCarrito');
+		}
+		else
+		{
+			redirect(base_url().'Catalogo/index');
+		}
 		
 	}
 
 	public function datosCarrito(){
 
-		
-		$data = array(
-			'page_title' => 'Producto',
-			'view' => 'carrito',
-			'data_view' => array()
-		);
+		if($this->session->userdata('NICK') != '')
+		{
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
 
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+					$data = array(
+						'page_title' => 'Producto',
+						'view' => 'carrito',
+						'data_view' => array('info' => $this->Login_model->verificarRol($usuario))
+					);
 
-		$this->load->view('template/main_view',$data);
+					$this->load->view('template/main_view',$data);
+				}
+				elseif ($row->ID_ROL == 2) // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					$data = array(
+						'page_title' => 'Producto',
+						'view' => 'carrito',
+						'data_view' => array('info' => $this->Login_model->verificarRol($usuario))
+					);
+
+					$this->load->view('template/main_view',$data);
+				}
+			}
+		}
+		else
+		{
+			$data = array(
+				'page_title' => 'Producto',
+				'view' => 'carrito',
+				'data_view' => array()
+			);
+
+			$this->load->view('template/main_view',$data);
+		}
 	}
 
 	public function vaciarCarrito(){

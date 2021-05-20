@@ -86,7 +86,30 @@
 
   <h2>Datos Adicionales</h2>
   <hr style="height:2px;border-width:0;color:gray;background-color:gray">
-  <br>
+
+<?php
+if (isset($info))
+{
+  foreach ($info->result() as $row)
+  {
+    $nom  = $row->NOMBRES;
+    $ape  = $row->APELLIDOS;
+    $rol  = $row->ID_ROL;
+    $type = $rol == 2 ? "text" : "hidden";
+  }
+
+}
+else
+{
+  $nom  = "";
+  $ape  = "";
+  $type = "hidden";
+}
+
+?>
+
+<input type='<?php echo $type ?>' disabled='disabled' class='form-control' name='nomUser' value='<?php echo $nom, " ", $ape ?>'>
+<br>
 
   <label>Metodo de pago:</label>
   <br>
