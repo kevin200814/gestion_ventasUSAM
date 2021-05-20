@@ -83,9 +83,16 @@ class Login extends CI_Controller {
 
 	public function registro_view()
 	{
-		$data["page_title"] = "Registrarse";
-		$this->load->view("TemplateLogin/headerLogin", $data);
-		$this->load->view("registrarse");
+		if ($this->session->userdata('NICK') != '')
+		{
+			redirect(base_url(). 'Store/index');
+		}
+		else
+		{
+			$data["page_title"] = "Registrarse";
+			$this->load->view("TemplateLogin/headerLogin", $data);
+			$this->load->view("registrarse");
+		}
 	}
 
 	public function inserUser()
