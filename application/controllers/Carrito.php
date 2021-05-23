@@ -55,31 +55,14 @@ class Carrito extends CI_Controller {
 		if($this->session->userdata('NICK') != '')
 		{
 			$usuario = $this->session->userdata('NICK');
-			$info = $this->Login_model->verificarRol($usuario);
+			$data = array(
+				'page_title' => 'Producto',
+				'view' => 'carrito',
+				'data_view' => array('info' => $this->Login_model->verificarRol($usuario))
+			);
 
-			foreach ($info->result() as $row)
-			{
-				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
-				{
-					$data = array(
-						'page_title' => 'Producto',
-						'view' => 'carrito',
-						'data_view' => array('info' => $this->Login_model->verificarRol($usuario))
-					);
+			$this->load->view('template/main_view',$data);
 
-					$this->load->view('template/main_view',$data);
-				}
-				elseif ($row->ID_ROL == 2) // VALIDACION PARA ENTRAR COMO CLIENTE
-				{
-					$data = array(
-						'page_title' => 'Producto',
-						'view' => 'carrito',
-						'data_view' => array('info' => $this->Login_model->verificarRol($usuario))
-					);
-
-					$this->load->view('template/main_view',$data);
-				}
-			}
 		}
 		else
 		{
