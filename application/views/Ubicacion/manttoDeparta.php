@@ -35,7 +35,7 @@ else{
 					<i class="bi bi-person-fill" style="font-size: 25px;"></i>
 					Usuarios
 				</a>
-				<a class="nav-link active" href="<?php echo base_url(); ?>ubicacionController">
+				<a class="nav-link active" href="<?php echo base_url(); ?>SexoController">
 					<i class="bi bi-people-fill" style="font-size: 25px;"></i>
 					Sexo
 				</a>
@@ -43,23 +43,22 @@ else{
 					<i class="bi bi-file-earmark-lock-fill" style="font-size: 25px;"></i>
 					Roles
 				</a>
-				<a class="nav-link active" href="<?php echo base_url(); ?>">
+				<a class="nav-link active" href="<?php echo base_url(); ?>Categoria/Index">
 					<i class="bi bi-book-half" style="font-size: 25px;"></i>
 					Categorias
 				</a>
-				<a class="nav-link active" href="<?php echo base_url(); ?>">
+				<a class="nav-link active" href="<?php echo base_url(); ?>Catalogo/CatalogoAdmin">
 					<i class="bi bi-camera-fill" style="font-size: 25px;"></i>
 					Productos
 				</a>
-				<a class="nav-link active" href="<?php echo base_url(); ?>">
+				<a class="nav-link active" href="<?php echo base_url(); ?>Proveedores/Index">
 					<i class="bi bi-truck" style="font-size: 25px;"></i>
 					Proveedores
 				</a>
-				<a class="nav-link active" href="<?php echo base_url(); ?>">
+				<a class="nav-link active" href="<?php echo base_url(); ?>tipoPagoController/">
 					<i class="bi bi-credit-card" style="font-size: 25px;"></i>
 					Pagos
 				</a>
-				
 				<a class="nav-link active" href="<?php echo base_url(); ?>ubicacionController/">
 					<i class="bi bi-geo-alt-fill" style="font-size: 25px;"></i>
 					Ubicación
@@ -77,7 +76,7 @@ else{
 				</li>
 				<li class="nav-item">
 					<a class="nav-link active" href="<?php echo base_url(); ?>ubicacionController/manttoDeparta">
-						Mantenimiento
+						Agregar
 					</a>
 				</li>
 			</ul>

@@ -1,5 +1,21 @@
 <br/><br/>
-
+<?php
+if(isset($update)){
+	$id        = '<input type="hidden" name="txtId" value="'.$this->uri->segment(3).'">';
+	$nombre           = $update->TIPO_PAGO;
+	$accion           ='editarTpago';
+}
+else{
+	$id        = '';
+	$nombre           = '';
+	$accion           = 'nuevoTpago';
+}
+?>
+<style type="text/css">
+	.bi-file-text-fill,.bi-plus-circle{
+		color: black;
+	}
+</style>
 <div class="container">
 	<div class="row">
 		<div class="col">
@@ -49,11 +65,45 @@
 
 		</div>
 	</div>
-	<br/>
 	<div class="row">
 		<div class="col">
-			<a href="<?php echo base_url(); ?>ubicacionController/municipio" class="btn btn-block" style="background-color: #0A0C57; color: white;">MUNICIPIOS</a>
-			<a href="<?php echo base_url(); ?>ubicacionController/departamento" class="btn btn-block" style="background-color: #0A0C57; color: white;">DEPARTAMENTOS</a>
+			<ul class="nav nav-tabs">
+				<li class="nav-item">
+					<a class="nav-link" aria-current="page" href="<?php echo base_url(); ?>tipoPagoController/">Listar
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link active" href="<?php echo base_url(); ?>tipoPagoController/manttoTipoPago">
+						Agregar
+					</a>
+				</li>
+			</ul>
+			
 		</div>
 	</div>
+	<br/>
+
+	<div class="row">
+		<div class="col-md-6">
+			<form method="post" action="<?php echo base_url().'tipoPagoController/'.$accion; ?>">
+				<div class="card">
+					<div class="card-header">
+						<h2>Administración de tipo de pagos</h2>
+					</div>
+					<div class="card-body">
+						<?php echo $id; ?>
+						<div class="form-group">
+							<label>Nombre del tipo de pago:</label>
+							<input type="text" name="txtNombre" class="form-control" value="<?=$nombre;?>" required>
+						</div>
+					</div>
+					<div class="card-footer">
+						<button type="submi" class="btn btn-success">ENVIAR</button>
+						<a href='<?=base_url();?>tipoPagoController/' class="btn btn-danger">CANCELAR</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
 </div>

@@ -37,7 +37,7 @@
 						<i class="bi bi-truck" style="font-size: 25px;"></i>
 						Proveedores
 					</a>
-					<a class="nav-link active" href="<?php echo base_url(); ?>">
+					<a class="nav-link active" href="<?php echo base_url(); ?>tipoPagoController/">
 						<i class="bi bi-credit-card" style="font-size: 25px;"></i>
 						Pagos
 					</a>
