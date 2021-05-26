@@ -1,5 +1,9 @@
 <br/><br/>
-
+<style type="text/css">
+	.bi-file-text-fill,.bi-plus-circle{
+		color: black;
+	}
+</style>
 <div class="container">
 	<div class="row">
 		<div class="col">
@@ -37,7 +41,7 @@
 					<i class="bi bi-truck" style="font-size: 25px;"></i>
 					Proveedores
 				</a>
-				<a class="nav-link active" href="<?php echo base_url(); ?>tipoPagoController/">
+				<a class="nav-link active" href="<?php echo base_url(); ?>">
 					<i class="bi bi-credit-card" style="font-size: 25px;"></i>
 					Pagos
 				</a>
@@ -49,11 +53,63 @@
 
 		</div>
 	</div>
-	<br/>
+
 	<div class="row">
 		<div class="col">
-			<a href="<?php echo base_url(); ?>ubicacionController/municipio" class="btn btn-block" style="background-color: #0A0C57; color: white;">MUNICIPIOS</a>
-			<a href="<?php echo base_url(); ?>ubicacionController/departamento" class="btn btn-block" style="background-color: #0A0C57; color: white;">DEPARTAMENTOS</a>
+			<ul class="nav nav-tabs">
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="<?php echo base_url(); ?>tipoPagoController/">Listar
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" aria-current="page" href="<?php echo base_url(); ?>tipoPagoController/manttoTipoPago">
+						Agregar
+					</a>
+				</li>
+			</ul>
+			
 		</div>
 	</div>
+
+	<br/>
+
+	<div class="row">
+		
+		<div class="col">
+			
+			<table id="table" class="table table-bordered">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>NOMBRE DE TIPO DE PAGO</th>
+						<th>ACCIONES</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach ($listar as $L): ?>
+						<tr>
+							<td><?=$L->ID_TIPO_PAGO ?></td>
+							<td><?=$L->TIPO_PAGO ?></td>
+							<td>
+								<a href="<?=base_url().'tipoPagoController/eliminar/'.$L->ID_TIPO_PAGO;?>" class="btn btn-danger">
+									<i class="bi bi-trash-fill"></i>
+								</a>
+								<a href="<?=base_url().'tipoPagoController/manttoTipoPago/'.$L->ID_TIPO_PAGO;?>" class="btn btn-primary">
+									<i class="bi bi-pencil-square"></i>
+								</a>
+							</td>
+						</tr>
+					<?php endforeach;?>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#table').DataTable();
+	} );
+</script>

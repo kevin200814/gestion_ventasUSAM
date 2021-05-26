@@ -41,23 +41,22 @@ else{
 					<i class="bi bi-file-earmark-lock-fill" style="font-size: 25px;"></i>
 					Roles
 				</a>
-				<a class="nav-link active" href="<?php echo base_url(); ?>">
+				<a class="nav-link active" href="<?php echo base_url(); ?>Categoria/Index">
 					<i class="bi bi-book-half" style="font-size: 25px;"></i>
 					Categorias
 				</a>
-				<a class="nav-link active" href="<?php echo base_url(); ?>">
+				<a class="nav-link active" href="<?php echo base_url(); ?>Catalogo/CatalogoAdmin">
 					<i class="bi bi-camera-fill" style="font-size: 25px;"></i>
 					Productos
 				</a>
-				<a class="nav-link active" href="<?php echo base_url(); ?>">
+				<a class="nav-link active" href="<?php echo base_url(); ?>Proveedores/Index">
 					<i class="bi bi-truck" style="font-size: 25px;"></i>
 					Proveedores
 				</a>
-				<a class="nav-link active" href="<?php echo base_url(); ?>">
+				<a class="nav-link active" href="<?php echo base_url(); ?>tipoPagoController/">
 					<i class="bi bi-credit-card" style="font-size: 25px;"></i>
 					Pagos
 				</a>
-				
 				<a class="nav-link active" href="<?php echo base_url(); ?>ubicacionController/">
 					<i class="bi bi-geo-alt-fill" style="font-size: 25px;"></i>
 					Ubicación
@@ -75,7 +74,7 @@ else{
 				</li>
 				<li class="nav-item">
 					<a class="nav-link active" aria-current="page" href="<?php echo base_url(); ?>SexoController/add_sexo">
-						Mantenimiento
+						Agregar
 					</a>
 				</li>
 			</ul>
@@ -83,28 +82,28 @@ else{
 		</div>
 	</div>
 	<br/>
-    
+	
 	<div class="row">
-        <div class="col-md-6">
-            <form method="post" action="<?php echo base_url().'SexoController/'.$accion; ?>">
-                <div class="card">
-                    <div class="card-header">
-                        <h2>Administración de sexos</h2>
-                    </div>
-                    <div class="card-body">
-                        <?php echo $id_sexo; ?>
-                        <div class="form-group">
-                            <label>Nombre del sexo:</label>
-                            <input type="text" name="txtSexo" class="form-control" value="<?=$sexo;?>" required>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button type="submi" class="btn btn-success">ENVIAR</button>
-					    <a href='<?=base_url();?>SexoController/' class="btn btn-danger">CANCELAR</a>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+		<div class="col-md-6">
+			<form method="post" action="<?php echo base_url().'SexoController/'.$accion; ?>">
+				<div class="card">
+					<div class="card-header">
+						<h2>Administración de sexos</h2>
+					</div>
+					<div class="card-body">
+						<?php echo $id_sexo; ?>
+						<div class="form-group">
+							<label>Nombre del sexo:</label>
+							<input type="text" name="txtSexo" class="form-control" value="<?=$sexo;?>" required>
+						</div>
+					</div>
+					<div class="card-footer">
+						<button type="submi" class="btn btn-success">ENVIAR</button>
+						<a href='<?=base_url();?>SexoController/' class="btn btn-danger">CANCELAR</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 
 </div>
