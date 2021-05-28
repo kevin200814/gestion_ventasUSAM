@@ -1,4 +1,5 @@
 <?php $this->load->view('other'); ?>
+<! ––Carga la vista del Menu de administrador ––>
 
 <div class="container">
 	<div  class="row">
@@ -45,6 +46,7 @@
 
 						<div class="form-group">
 							<label>Sexo:</label>
+							<! ––Trae los datos de la tabla sexo por el foreach ––>
 							<select class="form-control" name="ID_SEXO">
 								
 								<?php foreach ($this->usuarioModel->selectSex() as $p ): ?>
@@ -97,7 +99,7 @@
 					<div class="card-footer">
 						<button type="submit" class="btn btn-success">ENVIAR</button>
 
-						<a href='<?=base_url();?>Catalogo/CatalogoAdmin' class="btn btn-danger">CANCELAR</a>
+						<a href='<?=base_url();?>Usuario/' class="btn btn-danger">CANCELAR</a>
 					</div>
 				</div>
 			</form>

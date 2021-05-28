@@ -21,7 +21,7 @@
 						<i class="bi bi-people-fill" style="font-size: 25px;"></i>
 						Sexo
 					</a>
-					<a class="nav-link active" href="<?php echo base_url(); ?>">
+					<a class="nav-link active" href="<?php echo base_url(); ?>Roles/index">
 						<i class="bi bi-file-earmark-lock-fill" style="font-size: 25px;"></i>
 						Roles
 					</a>

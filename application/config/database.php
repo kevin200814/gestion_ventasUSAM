@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost\MSSQLSERVERTATY',
+	'hostname' => 'localhost',
 	'username' => 'sa',
 	'password' => 'root',
 	'database' => 'STORE_ONLINE',

@@ -3,14 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Usuario extends CI_Controller {
 
-	
+	//CONSTRUCTOR QUE CARGA EL MODELO
 		function __construct()
 	{
 		parent::__construct();
 		$this->load->model('usuarioModel');
 
 	}
-
+	//FUNCION PRINCIPAL PARA MOSTRAR DATOS DE LA BASE DE DATOS
 	public function index()
 	{
 	if($this->session->userdata('NICK') != ''){
@@ -30,7 +30,7 @@ class Usuario extends CI_Controller {
 		
 		
 	}
-
+	//MUESTRA LA VISTA PARA AGREGAR REGISTROS
 	public function ViewUser (){
 
 		$data = array(
@@ -38,11 +38,13 @@ class Usuario extends CI_Controller {
 				'view'        => 'Usuarios/AddUser',
 				'data_view'   => array()
 			);
+
+		//SELECT 
 		$data['sex'] = $this->usuarioModel->selectSex();
 		$data['rol'] = $this->usuarioModel->selectRol();
 		$this->load->view('template/main_view',$data);
 	}
-
+	//INSERTAR DATOS EN LA BD
 	public function InsertUser(){
 
 		$data = array(
@@ -62,12 +64,14 @@ class Usuario extends CI_Controller {
 		$this->index();
 		}
 
+		//ELIMINAR 
 		public function EliminarUs($ID_USUARIO){
 
 			$this->usuarioModel->DeleteUser($ID_USUARIO);
 			$this->index();
 		}
 
+		//MUESTRA LA VISTA PARA ACTUALIZAR Y TRAE LOS DATOS ANTERIORES
 		public function viewEdit($ID_USUARIO){
 		$data = array(
 				'page_title'  => 'Usuarios',
@@ -78,6 +82,7 @@ class Usuario extends CI_Controller {
 		$this->load->view('template/main_view',$data);		
 		}
 
+		//INSERTA LOS DATOS ACTUALIZADOS
 		public function ActualizarUs(){
 		$us['ID_USUARIO'] = $_POST['ID_USUARIO'];
 		$us['NOMBRES'] = $_POST['NOMBRES'];
