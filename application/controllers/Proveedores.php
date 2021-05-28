@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Proveedores extends CI_Controller {
 
+	//CONSTRUCTOR QUE CARGA EL MODELO
 	function __construct()
 	{
 		parent::__construct();
@@ -35,7 +36,7 @@ class Proveedores extends CI_Controller {
 		$this->load->view('template/main_view',$data_view);
 	}
 
-//INSERTAR DATOS A LA BD
+	//INSERTAR DATOS A LA BD
 	public function InsertarProv(){
 
 		$prov = array(
@@ -54,7 +55,7 @@ class Proveedores extends CI_Controller {
 	}
 
 
-//CARGAR LA VISTA EDITAR Y TRAER LOS DATOS A ACTUALIZAR
+	//CARGAR LA VISTA EDITAR Y TRAER LOS DATOS A ACTUALIZAR
 	public function TraerDato($ID_PROVEEDOR){
 
 		$data_view =array(
@@ -68,7 +69,7 @@ class Proveedores extends CI_Controller {
 		$this->load->view('template/main_view',$data_view);
 	}
 
-//ISERTAR DATOS ACTUALIZADOS 
+	//ISERTAR DATOS ACTUALIZADOS 
 	public function ActualizarProv (){
 
 		$prov['ID_PROVEEDOR'] = $_POST['ID_PROVEEDOR'];
