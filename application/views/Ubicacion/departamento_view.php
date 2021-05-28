@@ -1,4 +1,4 @@
-<br/><br/>
+<br/><br/> 
 <style type="text/css">
 	.bi-file-text-fill,.bi-plus-circle{
 		color: black;
@@ -53,7 +53,7 @@
 
 		</div>
 	</div>
-
+	<!-- Navegacion del mantenimiento -->
 	<div class="row">
 		<div class="col">
 			<ul class="nav nav-tabs">
@@ -72,7 +72,7 @@
 	</div>
 
 	<br/>
-
+	<!-- Listado -->
 	<div class="row">
 		
 		<div class="col">
@@ -93,9 +93,11 @@
 							<td><?=$L->NOMBRE_DEPARTAMENTO ?></td>
 							<td><?=$L->NOMBRE_MUNICIPIO ?></td>
 							<td>
+								<!-- Boton de eliminar registro -->
 								<a href="<?=base_url().'ubicacionController/eliminarDeparta/'.$L->ID_DEPARTAMENTO;?>" class="btn btn-danger">
 									<i class="bi bi-trash-fill"></i>
 								</a>
+								<!-- Boton de modificar registro -->
 								<a href="<?=base_url().'ubicacionController/manttoDeparta/'.$L->ID_DEPARTAMENTO;?>" class="btn btn-primary">
 									<i class="bi bi-pencil-square"></i>
 								</a>
@@ -107,9 +109,10 @@
 
 		</div>
 	</div>
-
+	<!-- Fin listado -->
 </div>
 
+<!-- Script de datatable -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#table').DataTable();

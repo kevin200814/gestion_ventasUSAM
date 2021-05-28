@@ -54,6 +54,7 @@
 		</div>
 	</div>
 	<br/>
+	<!-- Navegacion del mantenimiento -->
 	<div class="row">
 		<div class="col">
 			<ul class="nav nav-tabs">
@@ -71,6 +72,7 @@
 			
 		</div>
 	</div>
+	<!-- Listado -->
 	<div class="row">
 		
 		<div class="col">
@@ -84,36 +86,34 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php if (count($listar) > 0): ?>
-						<?php foreach ($listar as $S): ?>
-							<tr>
-								<td><?=$S->ID_SEXO ?></td>
-								<td><?=$S->SEXO ?></td>
-								<td>
-									<a href="<?=base_url().'SexoController/eliminar/'.$S->ID_SEXO;?>" class="btn btn-danger">
-										<i class="bi bi-trash-fill"></i>
-									</a>
-									<a href="<?=base_url().'SexoController/add_sexo/'.$S->ID_SEXO;?>" class="btn btn-primary">
-										<i class="bi bi-pencil-square"></i>
-									</a>
-								</td>
-							</tr>
-						<?php endforeach ?>
-						<?php else: ?>
-							<div class="alert alert-warning" role="alert">
-								¡No hay datos!
-							</div>
-						<?php endif ?>
-					</tbody>
-				</table>
+					<?php foreach ($listar as $S): ?>
+						<tr>
+							<td><?=$S->ID_SEXO ?></td>
+							<td><?=$S->SEXO ?></td>
+							<td>
+								<!-- Boton de eliminar registro -->
+								<a href="<?=base_url().'SexoController/eliminar/'.$S->ID_SEXO;?>" class="btn btn-danger">
+									<i class="bi bi-trash-fill"></i>
+								</a>
+								<!-- Boton de actualizar registro -->
+								<a href="<?=base_url().'SexoController/add_sexo/'.$S->ID_SEXO;?>" class="btn btn-primary">
+									<i class="bi bi-pencil-square"></i>
+								</a>
+							</td>
+						</tr>
+					<?php endforeach ?>
+				</tbody>
+			</table>
 
-			</div>
 		</div>
-
 	</div>
+	<!-- fin del listado -->
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#table').DataTable();
-		} );
-	</script>
+</div>
+
+<!-- Script datatable -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#table').DataTable();
+	} );
+</script>

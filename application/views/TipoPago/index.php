@@ -2,7 +2,7 @@
 <style type="text/css">
 	.bi-file-text-fill,.bi-plus-circle{
 		color: black;
-	}
+	} 
 </style>
 <div class="container">
 	<div class="row">
@@ -53,7 +53,7 @@
 
 		</div>
 	</div>
-
+	<!-- Navegacion del mantenimiento -->
 	<div class="row">
 		<div class="col">
 			<ul class="nav nav-tabs">
@@ -72,7 +72,7 @@
 	</div>
 
 	<br/>
-
+	<!-- Listado -->
 	<div class="row">
 		
 		<div class="col">
@@ -91,9 +91,11 @@
 							<td><?=$L->ID_TIPO_PAGO ?></td>
 							<td><?=$L->TIPO_PAGO ?></td>
 							<td>
+								<!-- Boton de eliminar registro -->
 								<a href="<?=base_url().'tipoPagoController/eliminar/'.$L->ID_TIPO_PAGO;?>" class="btn btn-danger">
 									<i class="bi bi-trash-fill"></i>
 								</a>
+								<!-- Boton de actualizar registro -->
 								<a href="<?=base_url().'tipoPagoController/manttoTipoPago/'.$L->ID_TIPO_PAGO;?>" class="btn btn-primary">
 									<i class="bi bi-pencil-square"></i>
 								</a>
@@ -105,9 +107,11 @@
 
 		</div>
 	</div>
+	<!-- fin del listado -->
 
 </div>
 
+<!-- Script datatable -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#table').DataTable();

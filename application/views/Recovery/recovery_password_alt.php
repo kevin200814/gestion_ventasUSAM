@@ -15,17 +15,19 @@
 							También debe ingresar su usuario (Nick) el cuál debe estar registrado junto al correo eléctronico.
 						</p>
 					</div>
+					<!-- Entrada para correo electronico -->
 					<div class="form-group">
 						<label>Ingresa tu correo electronico:</label>
 						<input type="email" name="txtEmail" class="form-control" required="Debe ingresar, dato obligatorio" placeholder="Ejem: mail@gmail.com">
 					</div>
-
+					<!-- Entrada para nombre de usuario -->
 					<div class="form-group">
 						<label>Ingresa tu nombre de usuario:</label>
 						<input type="text" name="txtUsuario" class="form-control" required="Debe ingresar, dato obligatorio" placeholder="Ejem: username123">
 					</div>
 				</div>
 				<div class="card-footer">
+					<!-- Boton de consultar datos -->
 					<button type="submit" class="btn btn-success">Consultar</button>
 				</div>
 			</div>

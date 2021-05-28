@@ -54,6 +54,7 @@
 		</div>
 	</div>
 	<br/>
+	<!-- Navegacion del mantenimiento -->
 	<div class="row">
 		<div class="col">
 			<ul class="nav nav-tabs">
@@ -69,6 +70,7 @@
 			
 		</div>
 	</div>
+	<!-- Listado -->
 	<div class="row">
 		
 		<div class="col">
@@ -87,9 +89,11 @@
 							<td><?=$S->ID_MUNICIPIO ?></td>
 							<td><?=$S->NOMBRE_MUNICIPIO ?></td>
 							<td>
+								<!-- Boton de eliminar -->
 								<a href="<?=base_url().'ubicacionController/eliminarMunicipio/'.$S->ID_MUNICIPIO;?>" class="btn btn-danger">
 									<i class="bi bi-trash-fill"></i>
 								</a>
+								<!-- Boton de modificar -->
 								<a href="<?=base_url().'ubicacionController/manttoMuni/'.$S->ID_MUNICIPIO;?>" class="btn btn-primary">
 									<i class="bi bi-pencil-square"></i>
 								</a>
@@ -101,9 +105,11 @@
 
 		</div>
 	</div>
+	<!-- Fin Listado -->
 
 </div>
 
+<!-- Script de datatable -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#table').DataTable();
