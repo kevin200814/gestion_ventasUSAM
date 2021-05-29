@@ -87,6 +87,7 @@ else{//caso contrario, dejar las variables vacias por que significa nuevo regist
 		</div>
 	</div>
 	<br/>
+	
 	<!-- formulario -->
 	<div class="row">
 		<div class="col-md-6">

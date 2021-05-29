@@ -61,7 +61,7 @@
 						<br>
 						<div class="occasion-cart">
 							<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-								<form action="<?php echo base_url(); ?>producto/agregarCarrito" method="post">
+								<form action="<?php echo base_url(); ?>Carrito/agregarCarrito" method="post">
 									<fieldset>
 										<input type="hidden" name="ID_PRODUCTO" value="<?=$valor->ID_PRODUCTO ?>">
 										<input type="hidden" name="NOMBRE_PRODUCTO" value="<?=$valor->NOMBRE_PRODUCTO ?>">

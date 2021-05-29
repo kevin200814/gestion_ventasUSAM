@@ -1,8 +1,8 @@
 <br/><br/>
 <style type="text/css">
-	.bi-file-text-fill,.bi-plus-circle{
-		color: black;
-	}
+.bi-file-text-fill,.bi-plus-circle{
+	color: black;
+}
 </style>
 <div class="container">
 	<div class="row">
@@ -72,43 +72,46 @@
 			
 		</div>
 	</div>
+	<br>	
 	<!-- Listado -->
-	<div class="row">
-		
-		<div class="col">
+	<div class="table-responsive">
+		<div class="row">
 			
-			<table id="table" class="table table-bordered">
-				<thead>
-					<tr>
-						<th>ID_SEXO</th>
-						<th>NOMBRE SEXO</th>
-						<th>ACCIONES</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php foreach ($listar as $S): ?>
+			<div class="col">
+				
+				<table id="table" class="table table-bordered">
+					<thead>
 						<tr>
-							<td><?=$S->ID_SEXO ?></td>
-							<td><?=$S->SEXO ?></td>
-							<td>
-								<!-- Boton de eliminar registro -->
-								<a href="<?=base_url().'SexoController/eliminar/'.$S->ID_SEXO;?>" class="btn btn-danger">
-									<i class="bi bi-trash-fill"></i>
-								</a>
-								<!-- Boton de actualizar registro -->
-								<a href="<?=base_url().'SexoController/add_sexo/'.$S->ID_SEXO;?>" class="btn btn-primary">
-									<i class="bi bi-pencil-square"></i>
-								</a>
-							</td>
+							<th>ID_SEXO</th>
+							<th>NOMBRE SEXO</th>
+							<th>ACCIONES</th>
 						</tr>
-					<?php endforeach ?>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						<?php foreach ($listar as $S): ?>
+							<tr>
+								<td><?=$S->ID_SEXO ?></td>
+								<td><?=$S->SEXO ?></td>
+								<td>
+									<!-- Boton de eliminar registro -->
+									<a href="<?=base_url().'SexoController/eliminar/'.$S->ID_SEXO;?>" class="btn btn-danger">
+										<i class="bi bi-trash-fill"></i>
+									</a>
+									<!-- Boton de actualizar registro -->
+									<a href="<?=base_url().'SexoController/add_sexo/'.$S->ID_SEXO;?>" class="btn btn-primary">
+										<i class="bi bi-pencil-square"></i>
+									</a>
+								</td>
+							</tr>
+						<?php endforeach ?>
+					</tbody>
+				</table>
 
+			</div>
 		</div>
-	</div>
-	<!-- fin del listado -->
+		<!-- fin del listado -->
 
+	</div>
 </div>
 
 <!-- Script datatable -->

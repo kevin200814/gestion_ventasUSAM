@@ -18,7 +18,7 @@
 			
 		</div>
 	</div>
-	<br/>
+	<br>
 	<div class="row">
 		<div  class="col-md-10">
 			<form   action="<?php echo base_url(); ?>Usuario/ActualizarUs" method="post">

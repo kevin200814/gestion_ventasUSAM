@@ -1,14 +1,15 @@
 <br/><br/>
 
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<h1 class="panel">Panel de administración
-					<small class="tittles-pages-logo">STORE ONLINE</small>
-				</h1>
-			</div>
+<div class="container">
+	<div class="row">
+		<div class="col">
+			<h1 class="panel">Panel de administración
+				<small class="tittles-pages-logo">STORE ONLINE</small>
+			</h1>
 		</div>
-		<hr>
+	</div>
+	<hr>
+	
 		<div class="row">
 			<div class="col">
 
@@ -52,3 +53,6 @@
 		
 
 	</div>
+
+
+<br>

@@ -1,8 +1,8 @@
 <br/><br/> 
 <style type="text/css">
-	.bi-file-text-fill,.bi-plus-circle{
-		color: black;
-	}
+.bi-file-text-fill,.bi-plus-circle{
+	color: black;
+}
 </style>
 <div class="container">
 	<div class="row">
@@ -53,6 +53,7 @@
 
 		</div>
 	</div>
+	<br>
 	<!-- Navegacion del mantenimiento -->
 	<div class="row">
 		<div class="col">
@@ -73,43 +74,45 @@
 
 	<br/>
 	<!-- Listado -->
-	<div class="row">
-		
-		<div class="col">
+	<div class="table-responsive">
+		<div class="row">
 			
-			<table id="table" class="table table-bordered">
-				<thead>
-					<tr>
-						<th>ID_DEPARTAMENTO</th>
-						<th>NOMBRE DE DEPARTAMENTO</th>
-						<th>MUNICIPIO</th>
-						<th>ACCIONES</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php foreach ($listar as $L): ?>
+			<div class="col">
+				
+				<table id="table" class="table table-bordered">
+					<thead>
 						<tr>
-							<td><?=$L->ID_DEPARTAMENTO ?></td>
-							<td><?=$L->NOMBRE_DEPARTAMENTO ?></td>
-							<td><?=$L->NOMBRE_MUNICIPIO ?></td>
-							<td>
-								<!-- Boton de eliminar registro -->
-								<a href="<?=base_url().'ubicacionController/eliminarDeparta/'.$L->ID_DEPARTAMENTO;?>" class="btn btn-danger">
-									<i class="bi bi-trash-fill"></i>
-								</a>
-								<!-- Boton de modificar registro -->
-								<a href="<?=base_url().'ubicacionController/manttoDeparta/'.$L->ID_DEPARTAMENTO;?>" class="btn btn-primary">
-									<i class="bi bi-pencil-square"></i>
-								</a>
-							</td>
+							<th>ID_DEPARTAMENTO</th>
+							<th>NOMBRE DE DEPARTAMENTO</th>
+							<th>MUNICIPIO</th>
+							<th>ACCIONES</th>
 						</tr>
-					<?php endforeach;?>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						<?php foreach ($listar as $L): ?>
+							<tr>
+								<td><?=$L->ID_DEPARTAMENTO ?></td>
+								<td><?=$L->NOMBRE_DEPARTAMENTO ?></td>
+								<td><?=$L->NOMBRE_MUNICIPIO ?></td>
+								<td>
+									<!-- Boton de eliminar registro -->
+									<a href="<?=base_url().'ubicacionController/eliminarDeparta/'.$L->ID_DEPARTAMENTO;?>" class="btn btn-danger">
+										<i class="bi bi-trash-fill"></i>
+									</a>
+									<!-- Boton de modificar registro -->
+									<a href="<?=base_url().'ubicacionController/manttoDeparta/'.$L->ID_DEPARTAMENTO;?>" class="btn btn-primary">
+										<i class="bi bi-pencil-square"></i>
+									</a>
+								</td>
+							</tr>
+						<?php endforeach;?>
+					</tbody>
+				</table>
 
+			</div>
 		</div>
+		<!-- Fin listado -->
 	</div>
-	<!-- Fin listado -->
 </div>
 
 <!-- Script de datatable -->
