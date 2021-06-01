@@ -18,7 +18,7 @@
 			
 		</div>
 	</div>
-	<br/>
+	<br>
 	<div class="row">
 		<div style="left: 190px;" class="col-md-6">
 			<form  action="<?php echo base_url(); ?>Roles/ActualizaRol" method="post">

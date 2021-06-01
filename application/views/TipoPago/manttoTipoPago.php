@@ -69,6 +69,7 @@ else{ //caso contrario, dejar las variables vacias por que significa nuevo regis
 
 		</div>
 	</div>
+	<br>
 	<!-- Navegacion del mantenimiento -->
 	<div class="row">
 		<div class="col">

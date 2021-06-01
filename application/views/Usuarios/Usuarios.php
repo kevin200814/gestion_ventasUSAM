@@ -19,65 +19,69 @@
 			
 		</div>
 	</div>
-	<div class="row">
+	<br>
+	<div class="table-responsive">
 		
-		<div class="col">
+
+		<div class="row">
+			
+			<div class="col">
 
 
-			<table id="data" class="table table-bordered" >
+				<table id="data" class="table table-bordered" >
 
-				<thead >
-					<tr>
-						<th>ID</th>
-						<th>Nombres </th>
-						<th>Apellidos</th>
-						<th>Edad</th>
-						<th>Sexo</th>
-						<th>E-mail</th>
-						<th>Nick</th>
-						<th>Tipo Usuario</th>
-						<th>Rol</th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
+					<thead >
+						<tr>
+							<th>ID</th>
+							<th>Nombres </th>
+							<th>Apellidos</th>
+							<th>Edad</th>
+							<th>Sexo</th>
+							<th>E-mail</th>
+							<th>Nick</th>
+							<th>Tipo Usuario</th>
+							<th>Rol</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
 
-				<tbody>
+					<tbody>
 
-					<?php if (count($us) >0) :?>
+						<?php if (count($us) >0) :?>
 
-						<?php foreach ($us as $u ): ?>
-							<tr>
-								<td><?php echo $u->ID_USUARIO; ?></td>
-								<td><?php echo $u->NOMBRES; ?></td>
-								<td><?php echo $u->APELLIDOS ; ?></td>
-								<td><?php echo $u->EDAD; ?></td>
-								<td><?php echo $u->SEXO ; ?></td>
-								<td><?php echo $u->EMAIL; ?></td>
-								<td><?php echo $u->NICK; ?></td>
-								<td><?php echo $u->TIPO_USUARIO; ?></td>
-								<td><?php echo $u->ROL; ?></td>
+							<?php foreach ($us as $u ): ?>
+								<tr>
+									<td><?php echo $u->ID_USUARIO; ?></td>
+									<td><?php echo $u->NOMBRES; ?></td>
+									<td><?php echo $u->APELLIDOS ; ?></td>
+									<td><?php echo $u->EDAD; ?></td>
+									<td><?php echo $u->SEXO ; ?></td>
+									<td><?php echo $u->EMAIL; ?></td>
+									<td><?php echo $u->NICK; ?></td>
+									<td><?php echo $u->TIPO_USUARIO; ?></td>
+									<td><?php echo $u->ROL; ?></td>
 
-								<td>
-									<a class="btn btn-danger" href="<?php echo base_url().'Usuario/EliminarUs/'.$u->ID_USUARIO; ?>">
+									<td>
+										<a class="btn btn-danger" href="<?php echo base_url().'Usuario/EliminarUs/'.$u->ID_USUARIO; ?>">
 
-										<i class="bi bi-trash-fill"></i>
-									</a>
-								</td>
+											<i class="bi bi-trash-fill"></i>
+										</a>
+									</td>
 
-								<td>
-									<a class="btn btn-primary" href="<?php echo base_url().'Usuario/viewEdit/'. $u->ID_USUARIO;?> ">
+									<td>
+										<a class="btn btn-primary" href="<?php echo base_url().'Usuario/viewEdit/'. $u->ID_USUARIO;?> ">
 
-										<i class="bi bi-pencil-square"></i>
-									</a>
-								</td>
-							</tr>
+											<i class="bi bi-pencil-square"></i>
+										</a>
+									</td>
+								</tr>
 
-						<?php endforeach; ?>
-					</tbody>
-				</table>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
 
-				
+					
 
 				<?php else:?>
 					<h2>Actualmente no existen datos</h2>
@@ -86,27 +90,27 @@
 		</div>
 
 	</div>
+</div>
+
+<script type="text/javascript">
+
+	$(document).ready( function ()
+	{
+		$('#data').dataTable();
+	} );
+
+</script>
 
 
-	<script type="text/javascript">
-
-		$(document).ready( function ()
-		{
-			$('#data').dataTable();
-		} );
-
-	</script>
 
 
 
 
-	
-
-	
-	
-	
 
 
-	
 
-	
+
+
+
+
+

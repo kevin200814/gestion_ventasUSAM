@@ -90,6 +90,7 @@ else{ //caso contrario, dejar las variables vacias por que significa nuevo regis
 	</div>
 	<br/>
 	<!-- formulario -->
+	
 	<div class="row">
 		<div class="col-md-6">
 			<form method="post" action="<?php echo base_url().'ubicacionController/'.$accion; ?>">

@@ -1,8 +1,8 @@
 <br/><br/>
 <style type="text/css">
-	.bi-file-text-fill,.bi-plus-circle{
-		color: black;
-	}
+.bi-file-text-fill,.bi-plus-circle{
+	color: black;
+}
 </style>
 <div class="container">
 	<div class="row">
@@ -70,45 +70,47 @@
 			
 		</div>
 	</div>
+	<br>
 	<!-- Listado -->
-	<div class="row">
-		
-		<div class="col">
+	<div class="table-responsive">
+		<div class="row">
 			
-			<table id="table" class="table table-bordered">
-				<thead>
-					<tr>
-						<th>ID_MUNICIPIO</th>
-						<th>NOMBRE DEL MUNICIPIO</th>
-						<th>ACCIONES</th>
-					</tr>
-				</thead>
-				<tbody>
-					<?php foreach ($listar as $S): ?>
+			<div class="col">
+				
+				<table id="table" class="table table-bordered">
+					<thead>
 						<tr>
-							<td><?=$S->ID_MUNICIPIO ?></td>
-							<td><?=$S->NOMBRE_MUNICIPIO ?></td>
-							<td>
-								<!-- Boton de eliminar -->
-								<a href="<?=base_url().'ubicacionController/eliminarMunicipio/'.$S->ID_MUNICIPIO;?>" class="btn btn-danger">
-									<i class="bi bi-trash-fill"></i>
-								</a>
-								<!-- Boton de modificar -->
-								<a href="<?=base_url().'ubicacionController/manttoMuni/'.$S->ID_MUNICIPIO;?>" class="btn btn-primary">
-									<i class="bi bi-pencil-square"></i>
-								</a>
-							</td>
+							<th>ID_MUNICIPIO</th>
+							<th>NOMBRE DEL MUNICIPIO</th>
+							<th>ACCIONES</th>
 						</tr>
-					<?php endforeach ?>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						<?php foreach ($listar as $S): ?>
+							<tr>
+								<td><?=$S->ID_MUNICIPIO ?></td>
+								<td><?=$S->NOMBRE_MUNICIPIO ?></td>
+								<td>
+									<!-- Boton de eliminar -->
+									<a href="<?=base_url().'ubicacionController/eliminarMunicipio/'.$S->ID_MUNICIPIO;?>" class="btn btn-danger">
+										<i class="bi bi-trash-fill"></i>
+									</a>
+									<!-- Boton de modificar -->
+									<a href="<?=base_url().'ubicacionController/manttoMuni/'.$S->ID_MUNICIPIO;?>" class="btn btn-primary">
+										<i class="bi bi-pencil-square"></i>
+									</a>
+								</td>
+							</tr>
+						<?php endforeach ?>
+					</tbody>
+				</table>
 
+			</div>
 		</div>
+		<!-- Fin Listado -->
+
 	</div>
-	<!-- Fin Listado -->
-
 </div>
-
 <!-- Script de datatable -->
 <script type="text/javascript">
 	$(document).ready(function() {

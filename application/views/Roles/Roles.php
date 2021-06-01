@@ -17,55 +17,57 @@
 			
 		</div>
 	</div>
-<div class="row">
-		
-		<div class="col">
+	<div class="table-responsive">
+		<div class="row">
 
-	<table id="DataTable" class="table table-bordered col-md-8">
+			<div class="col">
 
-		<thead>
-			<th>ID</th>
-			<th>Rol</th>
-			<th></th>
-			<th></th>
-		</thead>
+				<table id="DataTable" class="table table-bordered col-md-8">
 
-		<tbody>
+					<thead>
+						<th>ID</th>
+						<th>Rol</th>
+						<th></th>
+						<th></th>
+					</thead>
 
-			<?php if (count($r) >0) :?>
+					<tbody>
 
-				<?php foreach ($r as $r ): ?>
-					<tr>
-						<td><?php echo $r->ID_ROL ; ?></td>
-						<td><?php echo $r->ROL  ; ?></td>
+						<?php if (count($r) >0) :?>
 
-						<td>
-							<a class="btn btn-danger" href="<?php echo base_url(). 'Roles/EliminarRol/'.$r->ID_ROL; ?>" >
-								<i class="bi bi-trash-fill"></i>
-							</a>
-						</td>
+							<?php foreach ($r as $r ): ?>
+								<tr>
+									<td><?php echo $r->ID_ROL ; ?></td>
+									<td><?php echo $r->ROL  ; ?></td>
 
-						<td>
-							<a class="btn btn-primary" href="<?php echo base_url(). 'Roles/getRol/'.$r->ID_ROL; ?>" >
-								<i class="bi bi-pencil-square"></i>
-						</td>
-					</tr>
+									<td>
+										<a class="btn btn-danger" href="<?php echo base_url(). 'Roles/EliminarRol/'.$r->ID_ROL; ?>" >
+											<i class="bi bi-trash-fill"></i>
+										</a>
+									</td>
 
-				<?php endforeach; ?>
-			</tbody>
-		</table>
+									<td>
+										<a class="btn btn-primary" href="<?php echo base_url(). 'Roles/getRol/'.$r->ID_ROL; ?>" >
+											<i class="bi bi-pencil-square"></i>
+										</td>
+									</tr>
 
-	<?php else:?>
-		<h2>Actualmente no existen datos</h2>
-	<?php endif;?>
-</div>
+								<?php endforeach; ?>
+							</tbody>
+						</table>
+
+					<?php else:?>
+						<h2>Actualmente no existen datos</h2>
+					<?php endif;?>
+				</div>
+			</div>
+
 		</div>
+		<div>
+			
+			<script type="text/javascript" >
 
-	</div>
-
-	<script type="text/javascript" >
-
-		$(document).ready( function () {
-			$('#DataTable').DataTable();
-		} );
-	</script>
+				$(document).ready( function () {
+					$('#DataTable').DataTable();
+				} );
+			</script>
