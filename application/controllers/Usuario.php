@@ -8,41 +8,83 @@ class Usuario extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('usuarioModel');
+		$this->load->model('Login_model');
 
 	}
 	//FUNCION PRINCIPAL PARA MOSTRAR DATOS DE LA BASE DE DATOS
 	public function index()
 	{
-	if($this->session->userdata('NICK') != ''){
-		$data = array(
-				'page_title'  => 'Usuarios',
-				'view'        => 'Usuarios/Usuarios',
-				'data_view'   => array()
-			);
+		if($this->session->userdata('NICK') != '')
+		{
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
 
-		$data['us'] = $this->usuarioModel->MostrarUser();
-		$this->load->view('template/main_view',$data);
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
 
-	}else{
+					$data = array(
+						'page_title'  => 'Usuarios',
+						'view'        => 'Usuarios/Usuarios',
+						'data_view'   => array()
+					);
 
+					$usuario = $this->session->userdata('NICK');
+					$data['info'] = $this->Login_model->verificarRol($usuario);
+					$data['us'] = $this->usuarioModel->MostrarUser();
+					$this->load->view('template/main_view',$data);
+
+										
+				}
+				else // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					redirect(base_url(). 'Store/index');
+				}
+			}
+		}
+		else
+		{
 			redirect(base_url(). 'Store/index');
-	}
-		
-		
+		}		
 	}
 	//MUESTRA LA VISTA PARA AGREGAR REGISTROS
 	public function ViewUser (){
 
-		$data = array(
-				'page_title'  => 'Usuarios',
-				'view'        => 'Usuarios/AddUser',
-				'data_view'   => array()
-			);
+		if($this->session->userdata('NICK') != '')
+		{
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
 
-		//SELECT 
-		$data['sex'] = $this->usuarioModel->selectSex();
-		$data['rol'] = $this->usuarioModel->selectRol();
-		$this->load->view('template/main_view',$data);
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+					$data = array(
+						'page_title'  => 'Usuarios',
+						'view'        => 'Usuarios/AddUser',
+						'data_view'   => array()
+					);
+
+					$usuario = $this->session->userdata('NICK');
+					$data['info'] = $this->Login_model->verificarRol($usuario);
+
+					//SELECT 
+					$data['sex'] = $this->usuarioModel->selectSex();
+					$data['rol'] = $this->usuarioModel->selectRol();
+					$this->load->view('template/main_view',$data);
+										
+				}
+				else // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					redirect(base_url(). 'Store/index');
+				}
+			}
+		}
+		else
+		{
+			redirect(base_url(). 'Store/index');
+		}
 	}
 	//INSERTAR DATOS EN LA BD
 	public function InsertUser(){
@@ -73,13 +115,38 @@ class Usuario extends CI_Controller {
 
 		//MUESTRA LA VISTA PARA ACTUALIZAR Y TRAE LOS DATOS ANTERIORES
 		public function viewEdit($ID_USUARIO){
-		$data = array(
-				'page_title'  => 'Usuarios',
-				'view'        => 'Usuarios/EditUser',
-				'data_view'   => array()
-			);
-		$data['us']= $this->usuarioModel->TraerUsr($ID_USUARIO);	
-		$this->load->view('template/main_view',$data);		
+			if($this->session->userdata('NICK') != '')
+		{
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
+
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+
+					$data = array(
+						'page_title'  => 'Usuarios',
+						'view'        => 'Usuarios/EditUser',
+						'data_view'   => array()
+					);
+
+					$usuario = $this->session->userdata('NICK');
+					$data['info'] = $this->Login_model->verificarRol($usuario);
+					$data['us']= $this->usuarioModel->TraerUsr($ID_USUARIO);
+					$this->load->view('template/main_view',$data);
+
+				}
+				else // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					redirect(base_url(). 'Store/index');
+				}
+			}
+		}
+		else
+		{
+			redirect(base_url(). 'Store/index');
+		}			
 		}
 
 		//INSERTA LOS DATOS ACTUALIZADOS

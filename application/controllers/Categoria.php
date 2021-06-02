@@ -8,32 +8,80 @@ class Categoria extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('CategoriaModel');
+		$this->load->model('Login_model');
 
 	}
 
 	public function Index (){
 
-		$data_view =array(
-			'page_title' => 'Categorias',
-			'view' => 'Categorias/Categorias',
-			'data_view' =>  array()
-		);
+		if($this->session->userdata('NICK') != '')
+		{
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
 
-		//MOSTRAR DATOS DE LA BD
-		$data_view['cat'] = $this->CategoriaModel->MostrarCat();
-		$this->load->view('template/main_view',$data_view);
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+					$data_view =array(
+						'page_title' => 'Categorias',
+						'view' => 'Categorias/Categorias',
+						'data_view' =>  array()
+					);
+
+					$usuario = $this->session->userdata('NICK');
+					$data_view['info'] = $this->Login_model->verificarRol($usuario);
+					//MOSTRAR DATOS DE LA BD
+					$data_view['cat'] = $this->CategoriaModel->MostrarCat();
+					$this->load->view('template/main_view',$data_view);
+				}
+				else // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					redirect(base_url(). 'Store/index');
+				}
+			}
+		}
+		else
+		{
+			redirect(base_url(). 'Store/index');
+		}
 
 	}
 
 	
 	public function VistaCat (){
-		$data_view =array(
-			'page_title' => 'Categorias',
-			'view' => 'Categorias/AddCategoria',
-			'data_view' =>  array()
-		);
 
-		$this->load->view('template/main_view',$data_view);
+		if($this->session->userdata('NICK') != '')
+		{
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
+
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+					$data_view =array(
+						'page_title' => 'Categorias',
+						'view' => 'Categorias/AddCategoria',
+						'data_view' =>  array()
+					);
+					$usuario = $this->session->userdata('NICK');
+					$data_view['info'] = $this->Login_model->verificarRol($usuario);
+
+					$this->load->view('template/main_view',$data_view);
+					
+				}
+				else // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					redirect(base_url(). 'Store/index');
+				}
+			}
+		}
+		else
+		{
+			redirect(base_url(). 'Store/index');
+		}
+		
 	}
 
 		//INSERTA DATOS EN LA BASE DE DATOS
@@ -57,14 +105,41 @@ class Categoria extends CI_Controller {
 		//VISTA PARA ACTUALIZAR 
 	public function TraerCategoria($ID_CATEGORIA){
 
-		$data_view =array(
-			'page_title' => 'Mantenimiento',
-			'view' => 'Categorias/EditCategoria',
-			'data_view' =>  array()
+		if($this->session->userdata('NICK') != '')
+		{
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
 
-		);
-		$data_view['cate']= $this->CategoriaModel->ObtenerCat($ID_CATEGORIA);
-		$this->load->view('template/main_view',$data_view);
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+
+					$data_view =array(
+						'page_title' => 'Mantenimiento',
+						'view' => 'Categorias/EditCategoria',
+						'data_view' =>  array()
+
+					);
+					$usuario = $this->session->userdata('NICK');
+					$data_view['info'] = $this->Login_model->verificarRol($usuario);
+					$data_view['cate']= $this->CategoriaModel->ObtenerCat($ID_CATEGORIA);
+					$this->load->view('template/main_view',$data_view);
+										
+				}
+				else // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					redirect(base_url(). 'Store/index');
+				}
+			}
+		}
+		else
+		{
+			redirect(base_url(). 'Store/index');
+		}
+
+
+		
 	}
 
 	//ACTUALIZA LOS REGISTROS EN LA BD

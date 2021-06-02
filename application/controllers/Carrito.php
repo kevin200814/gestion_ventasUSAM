@@ -15,18 +15,25 @@ class Carrito extends CI_Controller {
 //Carga la tabla de los productos que han sido agregados al carrito
 	public function index()
 	{
-
-		
+		if($this->session->userdata('NICK') != '')
+		{
 			$data = array(
 				'page_title' => 'Producto',
 				'view' => 'carrito',
 				'data_view' => array()
 			);
 
+			$usuario = $this->session->userdata('NICK');
+			$data['info'] = $this->Login_model->verificarRol($usuario);
 			$producto = $this->carritoModel->getProducto();
 			$data['producto']  = $producto;
 
 			$this->load->view('template/main_view',$data);
+		}
+		else
+		{
+			redirect(base_url().'Catalogo/index');
+		}			
 		
 	}
 

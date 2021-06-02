@@ -7,50 +7,103 @@ class Roles extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('rolesModel');
+		$this->load->model('Login_model');
 
 	}
 
 	public function index()
 	{
-		if($this->session->userdata('NICK') != ''){
+		if($this->session->userdata('NICK') != '')
+		{
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
 
-			$data = array(
-				'page_title'  => 'Roles',
-				'view'        => 'Roles/Roles',
-				'data_view'   => array()
-			);
-		//MOSTRAR VISTA PRINCIPAL
-			$data['r'] = $this->rolesModel->MostrarRol();
-			$this->load->view('template/main_view',$data);
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+					$data = array(
+						'page_title'  => 'Roles',
+						'view'        => 'Roles/Roles',
+						'data_view'   => array()
+					);
 
-		}else{
+					$usuario = $this->session->userdata('NICK');
+					$data['info'] = $this->Login_model->verificarRol($usuario);
 
-			redirect(base_url(). 'Store/index');
+					//MOSTRAR VISTA PRINCIPAL
+					$data['r'] = $this->rolesModel->MostrarRol();
+					$this->load->view('template/main_view',$data);
+										
+				}
+				else // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					redirect(base_url(). 'Store/index');
+				}
+			}
 		}
-		
+		else
+		{
+			redirect(base_url(). 'Store/index');
+		}		
 		
 	}
 	//MOSTRAR VISTA DE AGREGAR
 	
 	public function rolView (){
-		$data_view =array(
-			'page_title' => 'Categorias',
-			'view' => 'Roles/AddRoles',
-			'data_view' =>  array()
-		);
 
-		$this->load->view('template/main_view',$data_view);
+		if($this->session->userdata('NICK') != '')
+		{
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
+
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+
+					$data_view =array(
+						'page_title' => 'Categorias',
+						'view' => 'Roles/AddRoles',
+						'data_view' =>  array()
+					);
+
+					$usuario = $this->session->userdata('NICK');
+					$data_view['info'] = $this->Login_model->verificarRol($usuario);
+					$this->load->view('template/main_view',$data_view);
+										
+				}
+				else // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					redirect(base_url(). 'Store/index');
+				}
+			}
+		}
+		else
+		{
+			redirect(base_url(). 'Store/index');
+		}
+
 	}
 	//INSETAR REGISTROS
 
 	public function insertRol(){
 
-		$rol = array(
-			'ROL  '=> $this->input->post('ROL'),
-		);
+		if($this->session->userdata('NICK') != ''){
 
-		$this->rolesModel->AddRol($rol);
-		$this->index();
+			$rol = array(
+				'ROL  '=> $this->input->post('ROL'),
+			);
+
+			$this->rolesModel->AddRol($rol);
+			$this->index();
+
+		}else{
+
+			redirect(base_url(). 'Store/index');
+		}
+
+		
 	}
 
 		//ELIMINAR REGISTROS 
@@ -65,14 +118,42 @@ class Roles extends CI_Controller {
 
 	public function getRol($ID_ROL){
 
-		$data_view =array(
-			'page_title' => 'Mantenimiento',
-			'view' => 'Roles/EditRoles',
-			'data_view' =>  array()
+		if($this->session->userdata('NICK') != '')
+		{
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
 
-		);
-		$data_view['rol']= $this->rolesModel->ObtenRol($ID_ROL);
-		$this->load->view('template/main_view',$data_view);
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+
+					$data_view =array(
+						'page_title' => 'Mantenimiento',
+						'view' => 'Roles/EditRoles',
+						'data_view' =>  array()
+
+					);
+
+					$usuario = $this->session->userdata('NICK');
+					$data_view['info'] = $this->Login_model->verificarRol($usuario);
+
+					$data_view['rol']= $this->rolesModel->ObtenRol($ID_ROL);
+					$this->load->view('template/main_view',$data_view);
+
+									
+				}
+				else // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					redirect(base_url(). 'Store/index');
+				}
+			}
+		}
+		else
+		{
+			redirect(base_url(). 'Store/index');
+		}
+		
 	}
 
 	//ACTUALIZAR LOS REGISTROS
