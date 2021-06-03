@@ -17,6 +17,7 @@
 			
 		</div>
 	</div>
+
 	<div class="table-responsive">
 		<div class="row">
 
@@ -49,25 +50,28 @@
 									<td>
 										<a class="btn btn-primary" href="<?php echo base_url(). 'Roles/getRol/'.$r->ID_ROL; ?>" >
 											<i class="bi bi-pencil-square"></i>
-										</td>
-									</tr>
+										</a>
+									</td>
+								</tr>
 
-								<?php endforeach; ?>
-							</tbody>
-						</table>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
 
-					<?php else:?>
-						<h2>Actualmente no existen datos</h2>
-					<?php endif;?>
-				</div>
+				<?php else:?>
+					<h2>Actualmente no existen datos</h2>
+				<?php endif;?>
 			</div>
-
 		</div>
-		<div>
-			
-			<script type="text/javascript" >
+	</div>
+</div>
 
-				$(document).ready( function () {
-					$('#DataTable').DataTable();
-				} );
-			</script>
+<div>
+	
+	<script type="text/javascript" >
+
+		$(document).ready( function () {
+			$('#DataTable').DataTable();
+		} );
+	</script>
+</div>
