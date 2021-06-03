@@ -25,8 +25,10 @@ class Carrito extends CI_Controller {
 
 			$usuario = $this->session->userdata('NICK');
 			$data['info'] = $this->Login_model->verificarRol($usuario);
-			$producto = $this->carritoModel->getProducto();
-			$data['producto']  = $producto;
+
+			$tipoPago = $this->carritoModel->get_tipoPago();
+			$data['tipoPago']  = $tipoPago;
+			
 
 			$this->load->view('template/main_view',$data);
 		}
@@ -96,6 +98,7 @@ class Carrito extends CI_Controller {
 		for($i=0; $i < count($_POST['ID_PRODUCTO']); $i++){
 
 			$data = array(
+				'CODIGO_PAGO' => $_POST['FACTURA'],
 				'ID_PRODUCTO' => $_POST['ID_PRODUCTO'][$i],
 				'FECHA_COMPRA' => $_POST['FECHA'],
 				'NOMBRE_PRODUCTO' => $_POST['PRODUCTO'][$i],
@@ -108,8 +111,15 @@ class Carrito extends CI_Controller {
 
 		}
 
-		$this->cart->destroy();
+		$dataD = array(
+			'CODIGO_PAGO' => $_POST['FACTURA'],
+			'USUARIO' => $_POST['USUARIO'],
+			'TOTAL_PAGO' => $_POST['TOTAL_FINAL']
+		);
 
+		$this->carritoModel->insertDetalle($dataD);
+
+		$this->cart->destroy();
 		$this->index();	
 
 	}
