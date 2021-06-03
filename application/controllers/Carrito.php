@@ -15,18 +15,27 @@ class Carrito extends CI_Controller {
 //Carga la tabla de los productos que han sido agregados al carrito
 	public function index()
 	{
-
-		
+		if($this->session->userdata('NICK') != '')
+		{
 			$data = array(
 				'page_title' => 'Producto',
 				'view' => 'carrito',
 				'data_view' => array()
 			);
 
-			$producto = $this->carritoModel->getProducto();
-			$data['producto']  = $producto;
+			$usuario = $this->session->userdata('NICK');
+			$data['info'] = $this->Login_model->verificarRol($usuario);
+
+			$tipoPago = $this->carritoModel->get_tipoPago();
+			$data['tipoPago']  = $tipoPago;
+			
 
 			$this->load->view('template/main_view',$data);
+		}
+		else
+		{
+			redirect(base_url().'Catalogo/index');
+		}			
 		
 	}
 
@@ -89,6 +98,7 @@ class Carrito extends CI_Controller {
 		for($i=0; $i < count($_POST['ID_PRODUCTO']); $i++){
 
 			$data = array(
+				'CODIGO_PAGO' => $_POST['FACTURA'],
 				'ID_PRODUCTO' => $_POST['ID_PRODUCTO'][$i],
 				'FECHA_COMPRA' => $_POST['FECHA'],
 				'NOMBRE_PRODUCTO' => $_POST['PRODUCTO'][$i],
@@ -101,8 +111,15 @@ class Carrito extends CI_Controller {
 
 		}
 
-		$this->cart->destroy();
+		$dataD = array(
+			'CODIGO_PAGO' => $_POST['FACTURA'],
+			'USUARIO' => $_POST['USUARIO'],
+			'TOTAL_PAGO' => $_POST['TOTAL_FINAL']
+		);
 
+		$this->carritoModel->insertDetalle($dataD);
+
+		$this->cart->destroy();
 		$this->index();	
 
 	}

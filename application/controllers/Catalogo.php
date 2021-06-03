@@ -345,31 +345,85 @@ class Catalogo extends CI_Controller {
 
 	public function CatalogoAdmin()
 	{
-		$data_view =array(
-			'page_title' => 'Catalogo',
-			'view' => 'Catalogo/Catalogo',
-			'data_view' =>  array()
-		);
 
-		//MOSTRAR
-		$data_view['prod'] = $this->catalogoModel->getCatalogo();
-		$this->load->view('template/main_view',$data_view);
+		if($this->session->userdata('NICK') != '')
+		{
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
+
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+					$data_view =array(
+						'page_title' => 'Catalogo',
+						'view' => 'Catalogo/Catalogo',
+						'data_view' =>  array()
+					);
+
+					$usuario = $this->session->userdata('NICK');
+					$data_view['info'] = $this->Login_model->verificarRol($usuario);
+
+					//MOSTRAR
+					$data_view['prod'] = $this->catalogoModel->getCatalogo();
+					$this->load->view('template/main_view',$data_view);
+										
+				}
+				else // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					redirect(base_url(). 'Store/index');
+				}
+			}
+		}
+		else
+		{
+			redirect(base_url(). 'Store/index');
+		}
+
 	}
 
 	public function VistaProd() 
 	{
-		$data_view =array(
-			'page_title' => 'Catalogo',
-			'view' => 'Catalogo/AddProducto',
-			'data_view' =>  array()
-		);
-		$prov =$this->catalogoModel->SelectProv(); //SELECT DE PROVEEDORES
-		$data_view['prov'] = $prov;
 
-		$cat =$this->catalogoModel->SelectCat();//SELECT DE CATEGORIAS DE PRODUCTOS
-		$data_view['cat'] = $cat;
+		if($this->session->userdata('NICK') != '')
+		{
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
 
-		$this->load->view('template/main_view',$data_view);
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+					$data_view =array(
+						'page_title' => 'Catalogo',
+						'view' => 'Catalogo/AddProducto',
+						'data_view' =>  array()
+					);
+
+					$usuario = $this->session->userdata('NICK');
+					$data_view['info'] = $this->Login_model->verificarRol($usuario);
+
+					$prov =$this->catalogoModel->SelectProv(); //SELECT DE PROVEEDORES
+					$data_view['prov'] = $prov;
+
+					$cat =$this->catalogoModel->SelectCat();//SELECT DE CATEGORIAS DE PRODUCTOS
+					$data_view['cat'] = $cat;
+
+					$this->load->view('template/main_view',$data_view);
+
+										
+				}
+				else // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					redirect(base_url(). 'Store/index');
+				}
+			}
+		}
+		else
+		{
+			redirect(base_url(). 'Store/index');
+		}
+
 	}
 
 	public function InsertProd()
@@ -434,14 +488,41 @@ class Catalogo extends CI_Controller {
 
 	public function EditProducto($ID_PRODUCTO){
 
-		$data_view =array(
-			'page_title' => 'Proveedores',
-			'view' => 'Catalogo/EditProducto',
-			'data_view' =>  array()
+		if($this->session->userdata('NICK') != '')
+		{
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
 
-		);
-		$data_view['pro']= $this->catalogoModel->ObtenerProd($ID_PRODUCTO);
-		$this->load->view('template/main_view',$data_view);
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+
+					$data_view =array(
+						'page_title' => 'Proveedores',
+						'view' => 'Catalogo/EditProducto',
+						'data_view' =>  array()
+
+					);
+
+					$usuario = $this->session->userdata('NICK');
+					$data_view['info'] = $this->Login_model->verificarRol($usuario);
+
+					$data_view['pro']= $this->catalogoModel->ObtenerProd($ID_PRODUCTO);
+					$this->load->view('template/main_view',$data_view);
+										
+				}
+				else // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					redirect(base_url(). 'Store/index');
+				}
+			}
+		}
+		else
+		{
+			redirect(base_url(). 'Store/index');
+		}
+
 	}
 
 	public function Actualizar()

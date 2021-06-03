@@ -9,6 +9,7 @@ class ubicacionController extends CI_Controller {
 		parent::__construct(); //relacion hereda funciones del modelo
 		$this->load->model('Departamento'); //carga del modelo
 		$this->load->model('Municipio'); //carga del modelo
+		$this->load->model('Login_model'); //carga del modelo
 	}
 
 	// Funcion que retorna una vista principal 
@@ -16,19 +17,36 @@ class ubicacionController extends CI_Controller {
 		// Pregunta para acceder si se ha iniciado sesion si Nick es diferente a vacio
 		if($this->session->userdata('NICK') != '')
 		{
-			//de ser verdad
-			$data = array(
-				'page_title'  => 'Administración', //Titulo de la pagina
-				'view'        => 'Ubicacion/Index', //Vista
-				'data_view'   => array() //declaracion de arreglo
-			); 
-			//Se carga la vista de la plantilla que tiene el estilo, las navbars y se le pasa el array de los datos
-			$this->load->view('template/main_view',$data);
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
+
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+					//de ser verdad
+					$data = array(
+						'page_title'  => 'Administración', //Titulo de la pagina
+						'view'        => 'Ubicacion/Index', //Vista
+						'data_view'   => array() //declaracion de arreglo
+					); 
+
+					$usuario = $this->session->userdata('NICK');
+					$data['info'] = $this->Login_model->verificarRol($usuario);
+
+					//Se carga la vista de la plantilla que tiene el estilo, las navbars y se le pasa el array de los datos
+					$this->load->view('template/main_view',$data);
+										
+				}
+				else // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					redirect(base_url(). 'Store/index');
+				}
+			}
 		}
-		else //de no ser verdadero 
+		else
 		{
-			//redirecciona al login para iniciar sesion
-			redirect(base_url(). 'Login/Login_view');
+			redirect(base_url(). 'Store/index');
 		}
 	}
 
@@ -37,21 +55,39 @@ class ubicacionController extends CI_Controller {
 		// Pregunta para acceder si se ha iniciado sesion si Nick es diferente a vacio
 		if($this->session->userdata('NICK') != '')
 		{
-			//de ser verdad
-			$data = array(
-				'page_title'  => 'Administración', //Titulo de la pagina
-				'view'        => 'Ubicacion/departamento_view', //Vista
-				'data_view'   => array() //declaracion de arreglo
-			); 
-			//obtiene todos los datos para listarlos en la vista
-			$data['listar'] = $this->Departamento->get_departamentos();
-			//Se carga la vista de la plantilla que tiene el estilo, las navbars y se le pasa el array de los datos
-			$this->load->view('template/main_view',$data);
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
+
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+
+					//de ser verdad
+					$data = array(
+						'page_title'  => 'Administración', //Titulo de la pagina
+						'view'        => 'Ubicacion/departamento_view', //Vista
+						'data_view'   => array() //declaracion de arreglo
+					); 
+
+					$usuario = $this->session->userdata('NICK');
+					$data['info'] = $this->Login_model->verificarRol($usuario);
+
+					//obtiene todos los datos para listarlos en la vista
+					$data['listar'] = $this->Departamento->get_departamentos();
+					//Se carga la vista de la plantilla que tiene el estilo, las navbars y se le pasa el array de los datos
+					$this->load->view('template/main_view',$data);
+									
+				}
+				else // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					redirect(base_url(). 'Store/index');
+				}
+			}
 		}
-		else //de no ser verdadero 
+		else
 		{
-			//redirecciona al login para iniciar sesion
-			redirect(base_url(). 'Login/Login_view');
+			redirect(base_url(). 'Store/index');
 		}
 	}
 
@@ -61,29 +97,46 @@ class ubicacionController extends CI_Controller {
 		// Pregunta para acceder si se ha iniciado sesion si Nick es diferente a vacio
 		if($this->session->userdata('NICK') != '')
 		{
-			$data = array(
-				'page_title'  => 'Administración', //Titulo de la pagina
-				'view'        => 'Ubicacion/manttoDeparta', //Vista 
-				'data_view'   => array() //declaracion de arreglo
-			);
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
 
-			//Aqui inicia el proceso para actualizar
-			//si se ha recuperado de forma Get un Identificador automaticamente sabrá que queremos actualizar o modificar un registro por lo tanto hará lo siguiente
-			if ($this->uri->segment(3)!=' ') {
-				//recuperara un Indentificador por medio de un GET
-				$id = $this->uri->segment(3);
-				//envia el Identificador al modelo para posteriormente hacer una consulta la cual retornara todos los datos de ese Identificador
-				$data['update'] = $this->Departamento->get_one_departamento($id);
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+
+					$data = array(
+						'page_title'  => 'Administración', //Titulo de la pagina
+						'view'        => 'Ubicacion/manttoDeparta', //Vista 
+						'data_view'   => array() //declaracion de arreglo
+					);
+
+					//Aqui inicia el proceso para actualizar
+					//si se ha recuperado de forma Get un Identificador automaticamente sabrá que queremos actualizar o modificar un registro por lo tanto hará lo siguiente
+					if ($this->uri->segment(3)!=' ') {
+						//recuperara un Indentificador por medio de un GET
+						$id = $this->uri->segment(3);
+						//envia el Identificador al modelo para posteriormente hacer una consulta la cual retornara todos los datos de ese Identificador
+						$data['update'] = $this->Departamento->get_one_departamento($id);
+					}
+
+					$usuario = $this->session->userdata('NICK');
+					$data['info'] = $this->Login_model->verificarRol($usuario);
+					$data['municipio'] = $this->Municipio->get_municipios();
+					//aqui finaliza
+					//Se carga la vista de la plantilla que tiene el estilo, las navbars y se le pasa el array de los datos
+					$this->load->view('template/main_view',$data);
+				
+				}
+				else // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					redirect(base_url(). 'Store/index');
+				}
 			}
-			$data['municipio'] = $this->Municipio->get_municipios();
-			//aqui finaliza
-			//Se carga la vista de la plantilla que tiene el estilo, las navbars y se le pasa el array de los datos
-			$this->load->view('template/main_view',$data);
 		}
-		else //de no ser verdadero 
+		else
 		{
-			//redirecciona al login para iniciar sesion
-			redirect(base_url(). 'Login/Login_view');
+			redirect(base_url(). 'Store/index');
 		}
 	}
 
@@ -166,21 +219,38 @@ class ubicacionController extends CI_Controller {
 		// Pregunta para acceder si se ha iniciado sesion si Nick es diferente a vacio
 		if($this->session->userdata('NICK') != '')
 		{
-			//de ser verdad
-			$data = array(
-				'page_title'  => 'Administración', //Titulo de la pagina
-				'view'        => 'Ubicacion/municipio_view', //Vista
-				'data_view'   => array() //declaracion de arreglo
-			); 
-			//obtiene todos los datos para listarlos en la vista
-			$data['listar'] = $this->Municipio->get_municipios();
-			//Se carga la vista de la plantilla que tiene el estilo, las navbars y se le pasa el array de los datos
-			$this->load->view('template/main_view',$data);
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
+
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+
+					//de ser verdad
+					$data = array(
+						'page_title'  => 'Administración', //Titulo de la pagina
+						'view'        => 'Ubicacion/municipio_view', //Vista
+						'data_view'   => array() //declaracion de arreglo
+					); 
+
+					$usuario = $this->session->userdata('NICK');
+					$data['info'] = $this->Login_model->verificarRol($usuario);
+					//obtiene todos los datos para listarlos en la vista
+					$data['listar'] = $this->Municipio->get_municipios();
+					//Se carga la vista de la plantilla que tiene el estilo, las navbars y se le pasa el array de los datos
+					$this->load->view('template/main_view',$data);
+				
+				}
+				else // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					redirect(base_url(). 'Store/index');
+				}
+			}
 		}
-		else //de no ser verdadero 
+		else
 		{
-			//redirecciona al login para iniciar sesion
-			redirect(base_url(). 'Login/Login_view');
+			redirect(base_url(). 'Store/index');
 		}
 	}
 
@@ -191,28 +261,45 @@ class ubicacionController extends CI_Controller {
 		// Pregunta para acceder si se ha iniciado sesion si Nick es diferente a vacio
 		if($this->session->userdata('NICK') != '')
 		{
-			$data = array(
-				'page_title'  => 'Administración', //Titulo de la pagina
-				'view'        => 'Ubicacion/manttoMuni', //Vista
-				'data_view'   => array() //declaracion de arreglo
-			);
+			$usuario = $this->session->userdata('NICK');
+			$info = $this->Login_model->verificarRol($usuario);
 
-			//Aqui inicia el proceso para actualizar
-			//si se ha recuperado de forma Get un Identificador automaticamente sabrá que queremos actualizar o modificar un registro por lo tanto hará lo siguiente
-			if ($this->uri->segment(3)!=' ') {
-				//recuperara un Indentificador por medio de un GET
-				$id = $this->uri->segment(3);
-				//envia el Identificador al modelo para posteriormente hacer una consulta la cual retornara todos los datos de ese Identificador
-				$data['update'] = $this->Municipio->get_one_municipio($id);
+			foreach ($info->result() as $row)
+			{
+				if ($row->ID_ROL == 1) // VALIDACION PARA ENTRAR COMO ADMIN
+				{
+
+					$data = array(
+						'page_title'  => 'Administración', //Titulo de la pagina
+						'view'        => 'Ubicacion/manttoMuni', //Vista
+						'data_view'   => array() //declaracion de arreglo
+					);
+
+					//Aqui inicia el proceso para actualizar
+					//si se ha recuperado de forma Get un Identificador automaticamente sabrá que queremos actualizar o modificar un registro por lo tanto hará lo siguiente
+					if ($this->uri->segment(3)!=' ') {
+						//recuperara un Indentificador por medio de un GET
+						$id = $this->uri->segment(3);
+						//envia el Identificador al modelo para posteriormente hacer una consulta la cual retornara todos los datos de ese Identificador
+						$data['update'] = $this->Municipio->get_one_municipio($id);
+					}
+
+					$usuario = $this->session->userdata('NICK');
+					$data['info'] = $this->Login_model->verificarRol($usuario);
+					//aqui finaliza
+					//Se carga la vista de la plantilla que tiene el estilo, las navbars y se le pasa el array de los datos
+					$this->load->view('template/main_view',$data);
+										
+				}
+				else // VALIDACION PARA ENTRAR COMO CLIENTE
+				{
+					redirect(base_url(). 'Store/index');
+				}
 			}
-			//aqui finaliza
-			//Se carga la vista de la plantilla que tiene el estilo, las navbars y se le pasa el array de los datos
-			$this->load->view('template/main_view',$data);
 		}
-		else //de no ser verdadero 
+		else
 		{
-			//redirecciona al login para iniciar sesion
-			redirect(base_url(). 'Login/Login_view');
+			redirect(base_url(). 'Store/index');
 		}
 	}
 

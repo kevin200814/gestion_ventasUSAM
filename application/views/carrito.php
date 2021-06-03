@@ -60,7 +60,7 @@
     ?>
     <tr>
       <td colspan="4" >
-        <?php echo anchor('carrito/vaciarCarrito', 'Vaciar Carrito','style="color:black"') ?>
+
       </td>
 
       <td><b>Total a cancelar:</b></td>
@@ -76,12 +76,11 @@
   $i = 1;
   foreach ($this->cart->contents() as $item):
    ?>
-   <form method="post" action="<?php echo base_url(); ?>producto/registrarDatos">
+   <form method="post" action="<?php echo base_url(); ?>carrito/registrarDatos">
     <input type="hidden" class="form-control "  min="0" name="ID_PRODUCTO[]" value="<?php echo $item['id']; ?>" >
     <input type="hidden" class="form-control "  min="0" name="PRODUCTO[]" value="<?php echo $item['name']; ?>" >
     <input type="hidden" class="form-control "  min="0" name="PRECIO[]" value="<?php echo $item['price']; ?>" >
     <input type="hidden" class="form-control"  min="0" name="CANTIDAD[]" value="<?php echo $item['qty']; ?>" >
-    <input type="hidden" name="FECHA" value="<?php echo date('d-m-Y') ?>">
     <input type="hidden" class="form-control "  min="0" name="SUBTOTAL[]" value="<?php echo $item['subtotal']; ?>" >
     <?php 
     $i++;
@@ -122,17 +121,22 @@
 
   <select class="form-control" required>
     <option>--Seleccione una opcion--</option>
-    <option>Pay pal</option>
+    <?php foreach($tipoPago as $t): ?>
+      <option value="<?php $t->ID_TIPO_PAGO ?>" ><?=$t->TIPO_PAGO ?></option>
+    <?php endforeach; ?>
   </select>
   <br>
   <label>Numero de tarjeta:</label>
   <br>
-  <input type="number" required class="form-control" name="card" value="Escriba el numero de tarjeta sin guiones">
-  
+  <input type="text" required class="form-control" name="card" placeholder="Escriba el numero de tarjeta sin guiones">
+  <br>
+  <label>Fecha compra:</label>
+  <input type="date" name="FECHA" class="form-control">
+  <input type="hidden" class="form-control"   name="FACTURA" value="<?php echo rand(1000,9999); ?>">
   <br>
   <br>
   <input type="submit" class="btn btn-success" name="Enviar" value="Confirmar la compra"> 
-  <?php echo anchor('producto/vaciarCarrito', 'Vaciar Carrito','class="btn btn-primary"') ?>
+  <?php echo anchor('carrito/vaciarCarrito', 'Vaciar Carrito','class="btn btn-primary"') ?>
 
 </form>
 </div>
